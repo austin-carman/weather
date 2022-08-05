@@ -3,7 +3,10 @@ function MainContainer() {
     <div className="main-container">
       <div className="city-search-container">
         <h2 className="city">Honolulu</h2>
-        <div className="search-container">Search Icon</div>
+        <input
+          type="text"
+          placeholder="city or zip"
+        />
       </div>
       <div>
         <div>Weather Icon</div>
