@@ -1,10 +1,10 @@
 function MainContainer() {
-  fetch('https://api.tomorrow.io/v4/timelines?location=-73.98529171943665,40.75872069597532&fields=temperature&timesteps=1h&units=metric&apikey=process.env.REACT_APP_API_KEY', {
+  fetch("https://api.tomorrow.io/v4/timelines?location=-73.98529171943665,40.75872069597532&fields=temperature&timesteps=1d&units=imperial&apikey=1MCq5oNUDYXt1wVUQk0AJ7m5d70vVjjG", {
     method: "GET",
     compress: true,
   })
-    .then((result) => JSON.parse(result))
-    .then((weather) => console.log(weather))
+    .then((result) => result.json())
+    .then((json) => console.log(json))
     .catch((error) => console.error("error: " + error));
 
   return (
