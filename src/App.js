@@ -2,14 +2,14 @@
 import './App.css';
 import MainContainer from './components/MainContainer';
 import Container2 from './components/Container2';
-import Container3 from './components/Container3';
+import HourlyAndWeeklyView from './components/HourlyAndWeeklyView';
 
 function App() {
   return (
     <div className="App">
       <MainContainer />
       <Container2 />
-      <Container3 />
+      <HourlyAndWeeklyView />
     </div>
   );
 }
