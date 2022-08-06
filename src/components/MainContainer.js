@@ -1,5 +1,5 @@
 function MainContainer() {
-  // fetch('https://api.tomorrow.io/v4/timelines?location=-73.98529171943665,40.75872069597532&fields=temperature&timesteps=1h&units=metric&apikey=', {
+  // fetch('https://api.tomorrow.io/v4/timelines?location=-73.98529171943665,40.75872069597532&fields=temperature&timesteps=1h&units=metric&apikey=process.env.REACT_APP_API_KEY', {
   //   method: "GET",
   //   compress: true,
   // })
@@ -10,8 +10,8 @@ function MainContainer() {
   return (
     <div className="main-container">
       <div className="city-search-container">
-        <h2 className="city">Honolulu</h2> {/* City - from API response */}
-        {/* Set Input to Local state */}
+        <h2 className="city">Honolulu</h2>
+        {/* start input as seach Icon -> onClick show input field */}
         <input
           type="text"
           placeholder="Search City or Zip"
@@ -19,19 +19,16 @@ function MainContainer() {
       </div>
       <div>
         <div>Weather Icon</div>
-        <div>
-          <h3>75&deg;</h3>
-          <h5>Sunny</h5>
-        </div>
+        <h4>Sunny</h4>
       </div>
       <div>
-        <div>Icon</div>
-        <div>
-          <h4>Title</h4>
-          <p>Details</p>
-        </div>
+        <h3>75&deg;</h3>
+        <h5>High/Low</h5>
       </div>
-    </div>
+      <div>
+        {/* list container for Additional weather detail options. Render each item component here */}
+      </div>
+    </div >
   )
 }
 
