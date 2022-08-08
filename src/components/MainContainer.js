@@ -1,11 +1,57 @@
+import { useEffect } from "react";
+
 function MainContainer() {
-  fetch("https://api.tomorrow.io/v4/timelines?location=-73.98529171943665,40.75872069597532&fields=temperature&timesteps=1d&units=imperial&apikey=1MCq5oNUDYXt1wVUQk0AJ7m5d70vVjjG", {
-    method: "GET",
-    compress: true,
-  })
-    .then((result) => result.json())
-    .then((json) => console.log(json))
-    .catch((error) => console.error("error: " + error));
+  const baseURL = "https://api.tomorrow.io/v4/timelines";
+  let location = [21.315603, -157.858093]; // make state
+  const fields = [
+    "temperature",
+    "uvIndex",
+    "windSpeed",
+    "weatherCodeDay",
+    // "weatherCodeNight",
+    // "temperatureMax",
+    // "temperatureMin",
+    // "temperatureApparent",
+    // "windDirection",
+    // "windGust",
+    // "precipitationProbability",
+    // "precipitationType",
+    // "rainIntensity",
+    // "rainAccumulation",
+    // "snowIntensity",
+    // "snowAccumulation",
+    // "sunriseTime",
+    // "sunsetTime",
+    // "moonPhase",
+    // "cloudCover",
+    // "uvHealthConcern",
+    // "epaHealthConcern",
+    // "wildfireSmokeIndex",
+    // "floodIndex",
+    // "primarySwellWaveSignificantHeight",
+    // "primarySwellMeanPeriod",
+    // "seaSurfaceTemperature",
+    // "tides",
+    // "humidity",
+    // "visibility",
+  ];
+  const units = "imperial";
+  let timezone = "US%2FHawaii"; // add to state
+  const apiKey = process.env.REACT_APP_API_KEY;
+  const url = `${baseURL}?location=${location}&fields=${fields.join('&fields=')}&units=${units}&timesteps=1h&timesteps=1d&startTime=now&endTime=nowPlus7d&timezone=${timezone}&apikey=${apiKey}`;
+  let date = new Date(); // do I need this
+  let currentDateISO = date.toISOString(); // do I need this
+
+  const options = {
+    method: 'GET',
+    headers: { Accept: 'application/json', 'Accept-Encoding': 'gzip' }
+  };
+  useEffect(() => {
+    // fetch(url, options)
+    //   .then(response => response.json())
+    //   .then(response => console.log(response))
+    //   .catch(err => console.error(err));
+  }, []); // API call on first render and when user submits a new location
 
   return (
     <div className="main-container">
