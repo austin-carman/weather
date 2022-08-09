@@ -1,4 +1,5 @@
-function MainContainer() {
+function MainContainer(props) {
+  const weather = props.weather;
   return (
     <div className="main-container">
       <div className="city-search-container">
@@ -11,11 +12,12 @@ function MainContainer() {
       </div>
       <div>
         <div>Weather Icon</div>
-        <h4>Sunny</h4>
+        <h4>{weather.daily[0].values.weatherCodeDay}</h4>
       </div>
       <div>
-        <h3>75&deg;</h3>
-        <h5>High/Low</h5>
+        <h3>{weather.hourly[0].values.temperature}&deg;</h3>
+        <h5>{weather.daily[0].values.temperatureMax}</h5>
+        <h5>{weather.daily[0].values.temperatureMin}</h5>
       </div>
       <div>
         {/* list container for Additional weather detail options. Render each item component here */}

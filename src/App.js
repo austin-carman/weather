@@ -10,17 +10,18 @@ function App() {
     daily: [],
     hourly: [],
   }
-  const [weather, setWeather] = useState();
+  const [weather, setWeather] = useState(initialState);
   useEffect(() => {
-    fetch(url, options)
-      .then(response => response.json())
-      .then(response => console.log(response))
-      .catch(err => console.error(err));
+    // fetch(url, options)
+    //   .then(response => response.json())
+    //   .then(response => setWeather({ ...initialState, daily: response.data.timelines[0].intervals, hourly: response.data.timelines[1].intervals }))
+    //   .catch(err => console.error(err));
   }, []); // API call on first render and when user submits a new location
+
 
   return (
     <div className="App">
-      <MainContainer />
+      <MainContainer weather={weather} />
       <HourlyAndWeeklyView />
     </div>
   );
