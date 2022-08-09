@@ -1,29 +1,28 @@
-function MainContainer() {
-  fetch("https://api.tomorrow.io/v4/timelines?location=-73.98529171943665,40.75872069597532&fields=temperature&timesteps=1d&units=imperial&apikey=1MCq5oNUDYXt1wVUQk0AJ7m5d70vVjjG", {
-    method: "GET",
-    compress: true,
-  })
-    .then((result) => result.json())
-    .then((json) => console.log(json))
-    .catch((error) => console.error("error: " + error));
+import { weatherCodeDay, weatherCodeNight } from "../data/data";
 
+function MainContainer(props) {
+  const weather = props.weather;
+  // switch to weatherCodeFullDay instead of weatherCodeDay?
+  const weatherCode = weather.daily[0].values.weatherCodeDay;
   return (
     <div className="main-container">
       <div className="city-search-container">
-        <h2 className="city">Honolulu</h2>
-        {/* start input as seach Icon -> onClick show input field */}
         <input
           type="text"
           placeholder="Search City or Zip"
         />
+        <h2 className="city">Honolulu</h2>
+        {/* start input as seach Icon -> onClick show input field */}
       </div>
       <div>
         <div>Weather Icon</div>
-        <h4>Sunny</h4>
+        <h4>{weatherCodeDay[weatherCode]}</h4>
       </div>
       <div>
-        <h3>75&deg;</h3>
-        <h5>High/Low</h5>
+        {/* Change hardcoded hourly/daily index into dynamic index when appropriate */}
+        <h3>{Math.round(weather.hourly[0].values.temperature)}&deg;</h3>
+        <h5>Low: {Math.round(weather.daily[0].values.temperatureMin)}&deg;</h5>
+        <h5>High: {Math.round(weather.daily[0].values.temperatureMax)}&deg;</h5>
       </div>
       <div>
         {/* list container for Additional weather detail options. Render each item component here */}
