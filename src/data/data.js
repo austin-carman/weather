@@ -40,7 +40,7 @@ export const options = {
   method: 'GET',
   headers: { Accept: 'application/json', 'Accept-Encoding': 'gzip' }
 };
-export const url = `${baseURL}?location=${location}&fields=${fields.join('&fields=')}&units=${units}&timesteps=1h&timesteps=1d&startTime=now&endTime=nowPlus7d&timezone=${timezone}&apikey=${apiKey}`;
+export const url = `${baseURL}?location=${location}&fields=${fields.join('&fields=')}&units=${units}&timesteps=1h&timesteps=1d&timesteps=current&startTime=now&endTime=nowPlus7d&timezone=${timezone}&apikey=${apiKey}`;
 export const weatherCodeDay = {
   0: "Unknown",
   10000: "Clear, Sunny",

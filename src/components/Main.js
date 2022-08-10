@@ -1,6 +1,6 @@
-import { weatherCodeDay, weatherCodeNight } from "../data/data";
+import { weatherCodeDay } from "../data/data";
 
-function MainContainer(props) {
+function Main(props) {
   const weather = props.weather;
   // switch to weatherCodeFullDay instead of weatherCodeDay?
   const weatherCode = weather.daily[0].values.weatherCodeDay;
@@ -31,4 +31,4 @@ function MainContainer(props) {
   )
 }
 
-export default MainContainer;
+export default Main;
