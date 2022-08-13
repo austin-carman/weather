@@ -1,9 +1,9 @@
 function TimeFrameItem(props) {
-  const weather = props.weather;
-  console.log(weather);
+  const weather = props.timeFrameWeather;
+  console.log("item: ", weather);
   return (
     <div>
-      hourly
+      Hello
     </div>
   )
 }

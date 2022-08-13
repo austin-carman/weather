@@ -3,16 +3,18 @@ import { useState } from "react";
 
 function TimeFrameList(props) {
   const [timeFrame, setTimeFrame] = useState("hourly");
-  const weather = timeFrame === "hourly" ? props.weather.hourly.slice(0, 13) : props.weather.daily;
+  const hourlyWeather = props.weather.hourly;
+  const dailyWeather = props.weather.daily;
+  let weather = timeFrame === "hourly" ? hourlyWeather : dailyWeather;
   return (
     <div>
       <div>
-        <button onClick={setTimeFrame("hourly")}>Hourly</button>
-        <button onClick={setTimeFrame("daily")}>Weekly</button>
+        <button onClick={() => setTimeFrame("hourly")}>Hourly</button>
+        <button onClick={() => setTimeFrame("daily")}>Daily</button>
       </div>
       <div>
-        {weather.map((time) => {
-          return <TimeFrameItem time={time} />
+        {weather.map((timeFrameWeather, index) => {
+          return <TimeFrameItem key={index} timeFrameWeather={timeFrameWeather} />
         })}
       </div>
     </div>

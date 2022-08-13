@@ -15,13 +15,13 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // fetch(url, options)
-    //   .then(response => response.json())
-    //   .then((response) => {
-    //     setWeather({ ...initialState, daily: response.data.timelines[0].intervals, hourly: response.data.timelines[1].intervals })
-    //     setLoading(false)
-    //   })
-    //   .catch(err => console.error(err));
+    fetch(url, options)
+      .then(response => response.json())
+      .then((response) => {
+        setWeather({ ...initialState, daily: response.data.timelines[0].intervals, hourly: response.data.timelines[1].intervals.slice(0, 13) })
+        setLoading(false)
+      })
+      .catch(err => console.error(err));
   }, []); // API call on first render and when user submits a new location
 
 
