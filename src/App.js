@@ -2,7 +2,7 @@ import Main from './components/Main';
 import TimeFrameList from './components/TimeFrameList';
 import { useEffect, useState } from "react";
 import { url, options } from "./data/data";
-import Details from './components/Details';
+// import Details from './components/Details';
 
 function App() {
   // May need to adjust initialState structure
@@ -30,7 +30,7 @@ function App() {
       {!loading &&
         <div>
           <Main weather={weather} />
-          <Details weather={weather} />
+          {/* <Details weather={weather} /> */}
           <TimeFrameList weather={weather} />
         </div>
       }

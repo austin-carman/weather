@@ -1,9 +1,9 @@
 function TimeFrameItem(props) {
   const weather = props.timeFrameWeather;
-  console.log("item: ", weather);
+  // round values...
   return (
     <div>
-      Hello
+      <h3>{weather.values.temperature}</h3> {/* Make last object property name dynamic based on user clicking on Details */}
     </div>
   )
 }
