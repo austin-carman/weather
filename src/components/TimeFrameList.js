@@ -15,7 +15,7 @@ function TimeFrameList(props) {
       </div>
       <div>
         {weather.map((timeFrameWeather, index) => {
-          return <TimeFrameItem key={index} timeFrameWeather={timeFrameWeather} />
+          return <TimeFrameItem key={index} timeFrameWeather={timeFrameWeather} timeFrame={timeFrame} />
         })}
       </div>
     </div>

@@ -1,8 +1,8 @@
 function TimeFrameItem(props) {
   const weather = props.timeFrameWeather;
+  const timeFrame = props.timeFrame;
   // round values...
 
-  // is using daily timeframe
   const weekdays = [
     "Sunday",
     "Monday",
@@ -13,11 +13,12 @@ function TimeFrameItem(props) {
     "Saturday"
   ];
   const date = new Date(weather.startTime);
+  const time = date.toLocaleTimeString([], { hour: '2-digit' }).replace(/^0+/, '');
 
   return (
     <div>
       <h3>
-        {weekdays[date.getUTCDay()]} {/* if using daily timeframe */}
+        {timeFrame === "hourly" ? time : weekdays[date.getUTCDay()]}
       </h3>
       <h3>{weather.values.temperature}</h3> {/* Make last object property name dynamic based on user clicking on Details */}
     </div>
