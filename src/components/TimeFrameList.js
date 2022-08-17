@@ -6,6 +6,7 @@ function TimeFrameList(props) {
   const hourlyWeather = props.weather.hourly;
   const dailyWeather = props.weather.daily;
   let weather = timeFrame === "hourly" ? hourlyWeather : dailyWeather;
+
   return (
     <div>
       <div>
