@@ -1,7 +1,6 @@
 function ForcastItem(props) {
   const weather = props.timeFrameWeather;
   const timeFrame = props.timeFrame;
-  // round values (ex: temperature rounds down to whole number)
   const weekdays = [
     "Sunday",
     "Monday",
@@ -20,7 +19,7 @@ function ForcastItem(props) {
         {timeFrame === "hourly" ? time : weekdays[date.getUTCDay()]}
       </h4>
       {/* weather icon here */}
-      <h5>{weather.values.temperature}&deg;</h5> {/* Make last object property name dynamic based on user clicking on Details */}
+      <h5>{Math.floor(weather.values.temperature)}&deg;</h5> {/* Make last object property name dynamic based on user clicking on Details */}
     </div>
   )
 }
