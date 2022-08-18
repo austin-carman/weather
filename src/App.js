@@ -1,8 +1,8 @@
 import Main from './components/Main';
-import HourlyAndWeeklyView from './components/HourlyAndWeeklyView';
+import TimeFrameList from './components/TimeFrameList';
 import { useEffect, useState } from "react";
 import { url, options } from "./data/data";
-import Details from './components/Details';
+// import Details from './components/Details';
 
 function App() {
   // May need to adjust initialState structure
@@ -15,11 +15,10 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log("hello");
     fetch(url, options)
       .then(response => response.json())
       .then((response) => {
-        setWeather({ ...initialState, daily: response.data.timelines[0].intervals, hourly: response.data.timelines[1].intervals })
+        setWeather({ ...initialState, daily: response.data.timelines[0].intervals, hourly: response.data.timelines[1].intervals.slice(0, 13) })
         setLoading(false)
       })
       .catch(err => console.error(err));
@@ -31,8 +30,8 @@ function App() {
       {!loading &&
         <div>
           <Main weather={weather} />
-          <Details weather={weather} />
-          <HourlyAndWeeklyView />
+          {/* <Details weather={weather} /> */}
+          <TimeFrameList weather={weather} />
         </div>
       }
     </div>
