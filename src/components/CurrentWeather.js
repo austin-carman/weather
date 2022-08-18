@@ -13,13 +13,11 @@ function CurrentWeather(props) {
         placeholder="Search City or Zip"
       />
       <h2 className="city">Honolulu</h2>
-      {/* start input as seach Icon -> onClick show input field */}
       <div>
         <div>Weather Icon</div>
         <h4>{weatherCodeDay[weatherCode]}</h4>
       </div>
       <div>
-        {/* Change hardcoded hourly/daily index into dynamic index when appropriate */}
         <h3>{Math.round(weather.hourly[0].values.temperature)}&deg;</h3>
         <h5>Low: {Math.round(weather.daily[0].values.temperatureMin)}&deg;</h5>
         <h5>High: {Math.round(weather.daily[0].values.temperatureMax)}&deg;</h5>
