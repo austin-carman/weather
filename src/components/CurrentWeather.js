@@ -8,10 +8,6 @@ function CurrentWeather(props) {
 
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Search City or Zip"
-      />
       <h2 className="city">Honolulu</h2>
       <div>
         <div>Weather Icon</div>
