@@ -1,8 +1,7 @@
 function TimeFrameItem(props) {
   const weather = props.timeFrameWeather;
   const timeFrame = props.timeFrame;
-  // round values...
-
+  // round values (ex: temperature rounds down to whole number)
   const weekdays = [
     "Sunday",
     "Monday",
@@ -17,10 +16,11 @@ function TimeFrameItem(props) {
 
   return (
     <div>
-      <h3>
+      <h4>
         {timeFrame === "hourly" ? time : weekdays[date.getUTCDay()]}
-      </h3>
-      <h3>{weather.values.temperature}</h3> {/* Make last object property name dynamic based on user clicking on Details */}
+      </h4>
+      {/* weather icon here */}
+      <h5>{weather.values.temperature}&deg;</h5> {/* Make last object property name dynamic based on user clicking on Details */}
     </div>
   )
 }
