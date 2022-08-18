@@ -1,7 +1,7 @@
-import TimeFrameItem from "./TimeFrameItem";
+import ForcastItem from "./ForcastItem";
 import { useState } from "react";
 
-function TimeFrameList(props) {
+function ForcastList(props) {
   const [timeFrame, setTimeFrame] = useState("hourly");
   const hourlyWeather = props.weather.hourly;
   const dailyWeather = props.weather.daily;
@@ -15,11 +15,11 @@ function TimeFrameList(props) {
       </div>
       <div>
         {weather.map((timeFrameWeather, index) => {
-          return <TimeFrameItem key={index} timeFrameWeather={timeFrameWeather} timeFrame={timeFrame} />
+          return <ForcastItem key={index} timeFrameWeather={timeFrameWeather} timeFrame={timeFrame} />
         })}
       </div>
     </div>
   )
 }
 
-export default TimeFrameList;
+export default ForcastList;

@@ -1,4 +1,4 @@
-function TimeFrameItem(props) {
+function ForcastItem(props) {
   const weather = props.timeFrameWeather;
   const timeFrame = props.timeFrame;
   // round values (ex: temperature rounds down to whole number)
@@ -25,4 +25,4 @@ function TimeFrameItem(props) {
   )
 }
 
-export default TimeFrameItem;
+export default ForcastItem;

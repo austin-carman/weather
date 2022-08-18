@@ -1,19 +1,19 @@
 import { weatherCodeDay } from "../data/data";
 
-function Main(props) {
+function CurrentWeather(props) {
   const weather = props.weather;
   // switch to weatherCodeFullDay instead of weatherCodeDay?
+  // create obj key in state instead of doing this
   const weatherCode = weather.daily[0].values.weatherCodeDay;
+
   return (
-    <div className="main-container">
-      <div className="city-search-container">
-        <input
-          type="text"
-          placeholder="Search City or Zip"
-        />
-        <h2 className="city">Honolulu</h2>
-        {/* start input as seach Icon -> onClick show input field */}
-      </div>
+    <div>
+      <input
+        type="text"
+        placeholder="Search City or Zip"
+      />
+      <h2 className="city">Honolulu</h2>
+      {/* start input as seach Icon -> onClick show input field */}
       <div>
         <div>Weather Icon</div>
         <h4>{weatherCodeDay[weatherCode]}</h4>
@@ -24,11 +24,8 @@ function Main(props) {
         <h5>Low: {Math.round(weather.daily[0].values.temperatureMin)}&deg;</h5>
         <h5>High: {Math.round(weather.daily[0].values.temperatureMax)}&deg;</h5>
       </div>
-      <div>
-        {/* list container for Additional weather detail options. Render each item component here */}
-      </div>
-    </div >
+    </div>
   )
 }
 
-export default Main;
+export default CurrentWeather;
