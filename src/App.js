@@ -1,38 +1,47 @@
-import Main from './components/Main';
-import TimeFrameList from './components/TimeFrameList';
+import CurrentWeather from './components/CurrentWeather';
 import { useEffect, useState } from "react";
 import { url, options } from "./data/data";
-// import Details from './components/Details';
+import ConditionsList from './components/ConditionsList';
+import ForcastList from './components/ForcastList';
 
 function App() {
-  // May need to adjust initialState structure
-  const initialState = {
+  const initialWeatherState = {
     daily: [],
     hourly: [],
+    current: [],
   }
-
-  const [weather, setWeather] = useState(initialState);
   const [loading, setLoading] = useState(true);
+  const [weather, setWeather] = useState(initialWeatherState);
+  const [condition, setCondition] = useState("temperature");
 
   useEffect(() => {
     fetch(url, options)
       .then(response => response.json())
       .then((response) => {
-        setWeather({ ...initialState, daily: response.data.timelines[0].intervals, hourly: response.data.timelines[1].intervals.slice(0, 13) })
+        // check if response.code is 429001 -> show error message that the request limit for this resource has been reached. Please wait and try again in an hour. Thank you for your patience
+        setWeather({ ...weather, daily: response.data.timelines[0].intervals, hourly: response.data.timelines[1].intervals.slice(0, 13), })
         setLoading(false)
       })
       .catch(err => console.error(err));
   }, []); // API call on first render and when user submits a new location
 
-
   return (
     <div className="App">
-      {!loading &&
-        <div>
-          <Main weather={weather} />
-          {/* <Details weather={weather} /> */}
-          <TimeFrameList weather={weather} />
-        </div>
+      {/* fetch mapbox api to autofill location */}
+      <input
+        type="text"
+        placeholder="Search City or Zip"
+      />
+      {
+        loading ? (
+          <div>Loading...</div>
+        ) : (
+          <div>
+            <CurrentWeather weather={weather} />
+            <ConditionsList weather={weather} setCondition={setCondition} />
+            <ForcastList weather={weather} condition={condition} />
+          </div>
+        )
       }
     </div>
   );
