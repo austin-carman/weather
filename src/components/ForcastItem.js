@@ -1,6 +1,7 @@
 function ForcastItem(props) {
   const weather = props.timeFrameWeather;
   const timeFrame = props.timeFrame;
+  const condition = props.condition;
   const weekdays = [
     "Sunday",
     "Monday",
@@ -15,11 +16,12 @@ function ForcastItem(props) {
 
   return (
     <div>
+      <h2>{condition}</h2>
       <h4>
         {timeFrame === "hourly" ? time : weekdays[date.getUTCDay()]}
       </h4>
       {/* weather icon here */}
-      <h5>{Math.floor(weather.values.temperature)}&deg;</h5> {/* Make last object property name dynamic based on user clicking on Details */}
+      <h5>{Math.floor(weather.values[condition])}&deg;</h5> {/* Make last object property name dynamic based on user clicking on Details */}
     </div>
   )
 }

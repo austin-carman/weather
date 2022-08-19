@@ -15,7 +15,7 @@ function ForcastList(props) {
       </div>
       <div>
         {weather.map((timeFrameWeather, index) => {
-          return <ForcastItem key={index} timeFrameWeather={timeFrameWeather} timeFrame={timeFrame} />
+          return <ForcastItem key={index} timeFrameWeather={timeFrameWeather} timeFrame={timeFrame} condition={props.condition} />
         })}
       </div>
     </div>

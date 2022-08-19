@@ -5,19 +5,21 @@ import ConditionsList from './components/ConditionsList';
 import ForcastList from './components/ForcastList';
 
 function App() {
-  const initialState = {
+  const initialWeatherState = {
     daily: [],
     hourly: [],
+    current: [],
   }
   const [loading, setLoading] = useState(true);
-  const [weather, setWeather] = useState(initialState);
-  // const [condition, setCondition] = useState("temperature");
+  const [weather, setWeather] = useState(initialWeatherState);
+  const [condition, setCondition] = useState("temperature");
 
   useEffect(() => {
     fetch(url, options)
       .then(response => response.json())
       .then((response) => {
-        setWeather({ ...initialState, daily: response.data.timelines[0].intervals, hourly: response.data.timelines[1].intervals.slice(0, 13) })
+        // check if response.code is 429001 -> show error message that the request limit for this resource has been reached. Please wait and try again in an hour. Thank you for your patience
+        setWeather({ ...weather, daily: response.data.timelines[0].intervals, hourly: response.data.timelines[1].intervals.slice(0, 13), })
         setLoading(false)
       })
       .catch(err => console.error(err));
@@ -25,6 +27,7 @@ function App() {
 
   return (
     <div className="App">
+      {/* fetch mapbox api to autofill location */}
       <input
         type="text"
         placeholder="Search City or Zip"
@@ -35,8 +38,8 @@ function App() {
         ) : (
           <div>
             <CurrentWeather weather={weather} />
-            <ConditionsList weather={weather} />
-            <ForcastList weather={weather} />
+            <ConditionsList weather={weather} setCondition={setCondition} />
+            <ForcastList weather={weather} condition={condition} />
           </div>
         )
       }
