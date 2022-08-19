@@ -2,7 +2,8 @@ import ConditionItem from "./ConditionItem";
 
 function ConditionsList(props) {
   const weather = props.weather.hourly[0].values;
-  const conditions = [ // expand to include all conditions. Is there a way to make this a function
+  // should I move this to data file?
+  const conditions = [ // expand to include all conditions. Is there a way to create this in a function instead of hardcoding
     {
       title: "Clouds",
       icon: "Icon",
