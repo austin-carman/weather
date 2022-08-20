@@ -1,4 +1,4 @@
-function ForcastItem(props) {
+function ForecastItem(props) {
   const { timeFrameWeather, timeFrame, condition } = props;
   const weekdays = [
     "Sunday",
@@ -18,9 +18,9 @@ function ForcastItem(props) {
         {timeFrame === "hourly" ? time : weekdays[date.getUTCDay()]}
       </h4>
       {/* condition icon */}
-      <h5>{Math.floor(timeFrameWeather.values[condition])}&deg;</h5> {/* only insert &deg; for temperature */}
+      <h5>{Math.floor(timeFrameWeather.values[condition])}</h5>
     </div>
   )
 }
 
-export default ForcastItem;
+export default ForecastItem;

@@ -1,7 +1,7 @@
-import ForcastItem from "./ForcastItem";
+import ForecastItem from "./ForecastItem";
 import { useState } from "react";
 
-function ForcastList(props) {
+function ForecastList(props) {
   const [timeFrame, setTimeFrame] = useState("hourly");
   const hourlyWeather = props.weather.hourly;
   const dailyWeather = props.weather.daily;
@@ -15,11 +15,11 @@ function ForcastList(props) {
       </div>
       <div>
         {weather.map((timeFrameWeather, index) => {
-          return <ForcastItem key={index} timeFrameWeather={timeFrameWeather} timeFrame={timeFrame} condition={props.condition} />
+          return <ForecastItem key={index} timeFrameWeather={timeFrameWeather} timeFrame={timeFrame} condition={props.condition} />
         })}
       </div>
     </div>
   )
 }
 
-export default ForcastList;
+export default ForecastList;

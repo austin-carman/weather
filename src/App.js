@@ -2,7 +2,7 @@ import CurrentWeather from './components/CurrentWeather';
 import { useEffect, useState } from "react";
 import { url, options } from "./data/data";
 import ConditionsList from './components/ConditionsList';
-import ForcastList from './components/ForcastList';
+import ForecastList from './components/ForecastList';
 
 function App() {
   const initialWeatherState = {
@@ -39,7 +39,7 @@ function App() {
           <div>
             <CurrentWeather weather={weather} />
             <ConditionsList weather={weather} setCondition={setCondition} />
-            <ForcastList weather={weather} condition={condition} />
+            <ForecastList weather={weather} condition={condition} />
           </div>
         )
       }
