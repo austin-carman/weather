@@ -10,7 +10,7 @@ function ForecastItem(props) {
     "Saturday"
   ];
   const date = new Date(timeFrameWeather.startTime);
-  const time = date.toLocaleTimeString([], { hour: '2-digit' }).replace(/^0+/, '');
+  const time = date.toLocaleTimeString([], { hour: 'numeric' });
 
   return (
     <div>

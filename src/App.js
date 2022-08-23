@@ -19,6 +19,7 @@ function App() {
       .then(response => response.json())
       .then((response) => {
         // check if response.code is 429001 -> show error message that the request limit for this resource has been reached. Please wait and try again in an hour. Thank you for your patience
+        console.log(response.data);
         setWeather({ ...weather, daily: response.data.timelines[0].intervals, hourly: response.data.timelines[1].intervals.slice(0, 13), })
         setLoading(false)
       })

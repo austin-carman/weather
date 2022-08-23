@@ -233,3 +233,49 @@ export const weatherCodeNight = {
   80021: "Mostly Cloudy and Thunderstorm",
   80001: "Thunderstorm"
 };
+
+export const moonPhases = {
+  0: "New",
+  1: "Waxing Crescent",
+  2: "First Quarter",
+  3: "Waxing Gibbous",
+  4: "Full",
+  5: "Waning Gibbous",
+  6: "Third Quarter",
+  7: "Waning Crescent",
+};
+
+export const uvIndexHealthConcern = {
+  0: "Low",
+  1: "Low",
+  2: "Low",
+  3: "Moderate",
+  4: "Moderate",
+  5: "Moderate",
+  6: "High",
+  7: "High",
+  8: "Very High",
+  9: "Very High",
+  10: "Very High",
+  11: "Extreme",
+};
+
+export default function getWindDirection(deg) {
+  if (deg >= 330 || (deg >= 0 && deg <= 30)) {
+    return "N";
+  } else if (deg > 30 && deg < 60) {
+    return "NE"
+  } else if (deg >= 60 && deg <= 120) {
+    return "E";
+  } else if (deg > 120 && deg < 150) {
+    return "SE"
+  } else if (deg >= 150 && deg <= 210) {
+    return "S";
+  } else if (deg > 210 && deg < 240) {
+    return "SW"
+  } else if (deg >= 240 && deg <= 300) {
+    return "W";
+  } else if (deg > 300 && deg < 330) {
+    return "NW"
+  }
+};
