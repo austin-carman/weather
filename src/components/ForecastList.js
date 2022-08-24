@@ -2,20 +2,20 @@ import ForecastItem from "./ForecastItem";
 import { useState } from "react";
 
 function ForecastList(props) {
-  const [timeFrame, setTimeFrame] = useState("hourly");
   const hourlyWeather = props.weather.hourly;
   const dailyWeather = props.weather.daily;
-  let weather = timeFrame === "hourly" ? hourlyWeather : dailyWeather;
+  const [isHourlyForecast, setIsHourlyForecast] = useState(true);
+  let weather = isHourlyForecast ? hourlyWeather : dailyWeather;
 
   return (
     <div>
       <div>
-        <button onClick={() => setTimeFrame("hourly")}>Hourly</button>
-        <button onClick={() => setTimeFrame("daily")}>Daily</button>
+        <button onClick={() => setIsHourlyForecast(true)}>Hourly</button>
+        <button onClick={() => setIsHourlyForecast(false)}>Daily</button>
       </div>
       <div>
-        {weather.map((timeFrameWeather, index) => {
-          return <ForecastItem key={index} timeFrameWeather={timeFrameWeather} timeFrame={timeFrame} condition={props.condition} />
+        {weather.map((forecast, index) => {
+          return <ForecastItem key={index} forecast={forecast} isHourlyForecast={isHourlyForecast} condition={props.condition} />
         })}
       </div>
     </div>

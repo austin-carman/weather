@@ -8,28 +8,28 @@ const fields = [
   "weatherCodeNight",
   "temperatureMax",
   "temperatureMin",
-  "temperatureApparent",
+  // "temperatureApparent",
   "windDirection",
-  "windGust",
+  // "windGust",
   "precipitationProbability",
   "precipitationType",
-  "rainIntensity",
-  "rainAccumulation",
-  "snowIntensity",
-  "snowAccumulation",
+  // "rainIntensity",
+  // "rainAccumulation",
+  // "snowIntensity",
+  // "snowAccumulation",
   "sunriseTime",
   "sunsetTime",
   "moonPhase",
   "cloudCover",
-  "tides",
+  // "tides",
   "humidity",
   "visibility",
   "uvHealthConcern",
-  "epaHealthConcern",
-  "wildfireSmokeIndex",
-  "floodIndex",
-  "primarySwellWaveSignificantHeight",
-  "seaSurfaceTemperature",
+  // "epaHealthConcern",
+  // "wildfireSmokeIndex",
+  // "floodIndex",
+  // "primarySwellWaveSignificantHeight",
+  // "seaSurfaceTemperature",
 ];
 const units = "imperial";
 let timezone = "US%2FHawaii"; // add to state
@@ -40,8 +40,8 @@ export const options = {
   method: 'GET',
   headers: { Accept: 'application/json', 'Accept-Encoding': 'gzip' }
 };
-export const url = `${baseURL}?location=${location}&fields=${fields.join('&fields=')}&units=${units}&timesteps=1h&timesteps=1d&timesteps=current&startTime=now&endTime=nowPlus7d&timezone=${timezone}&apikey=${apiKey}`;
-export const weatherCodeDay = {
+export const url = `${baseURL}?location=${location}&fields=${fields.join('&fields=')}&units=${units}&timesteps=1h&timesteps=1d&startTime=now&endTime=nowPlus7d&timezone=${timezone}&apikey=${apiKey}`;
+export const weatherCodes = {
   0: "Unknown",
   10000: "Clear, Sunny",
   11000: "Mostly Clear",
@@ -245,7 +245,7 @@ export const moonPhases = {
   7: "Waning Crescent",
 };
 
-export const uvIndexHealthConcern = {
+export const uvHealthRisk = {
   0: "Low",
   1: "Low",
   2: "Low",
@@ -260,7 +260,7 @@ export const uvIndexHealthConcern = {
   11: "Extreme",
 };
 
-export default function getWindDirection(deg) {
+export function getWindDirection(deg) {
   if (deg >= 330 || (deg >= 0 && deg <= 30)) {
     return "N";
   } else if (deg > 30 && deg < 60) {
@@ -278,4 +278,11 @@ export default function getWindDirection(deg) {
   } else if (deg > 300 && deg < 330) {
     return "NW"
   }
+};
+
+export const precipitation = {
+  1: "Rain",
+  2: "Snow",
+  3: "Freezing Rain",
+  4: "Ice Pellets / Sleet",
 };

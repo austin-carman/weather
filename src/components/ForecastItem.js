@@ -1,5 +1,5 @@
 function ForecastItem(props) {
-  const { timeFrameWeather, timeFrame, condition } = props;
+  const { forecast, isHourlyForecast, condition } = props;
   const weekdays = [
     "Sunday",
     "Monday",
@@ -9,16 +9,16 @@ function ForecastItem(props) {
     "Friday",
     "Saturday"
   ];
-  const date = new Date(timeFrameWeather.startTime);
+  const date = new Date(forecast.startTime);
   const time = date.toLocaleTimeString([], { hour: 'numeric' });
 
   return (
     <div>
       <h4>
-        {timeFrame === "hourly" ? time : weekdays[date.getUTCDay()]}
+        {isHourlyForecast ? time : weekdays[date.getUTCDay()]}
       </h4>
       {/* condition icon */}
-      <h5>{Math.floor(timeFrameWeather.values[condition])}</h5>
+      <h5>{Math.floor(forecast.values[condition])}</h5>
     </div>
   )
 }

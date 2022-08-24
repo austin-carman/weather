@@ -1,18 +1,28 @@
 import CurrentWeather from './components/CurrentWeather';
 import { useEffect, useState } from "react";
-import { url, options, weatherCodeDay } from "./data/data";
-import ConditionsList from './components/ConditionsList';
+import { url, options, weatherCodes } from "./data/data";
+import Conditions from './components/Conditions';
 import ForecastList from './components/ForecastList';
 
 function App() {
   const initialWeatherState = {
-    current: {},
-    hourly: [],
-    daily: [],
-  }
+    current: {
+      icon: null,
+      weatherCodeDay: null,
+      temperature: null,
+      temperatureMin: null,
+      temperatureMax: null,
+      conditions: {},
+    },
+    forecast: {
+      hourly: [],
+      daily: [],
+    }
+  };
   const [loading, setLoading] = useState(true);
   const [weather, setWeather] = useState(initialWeatherState);
   const [condition, setCondition] = useState("temperature");
+  const [city, setCity] = useState("Honolulu");
 
   useEffect(() => {
     fetch(url, options)
@@ -23,14 +33,17 @@ function App() {
           ...weather,
           current: {
             ...weather.current,
-            weatherCodeDay: weatherCodeDay[response.data.timelines[0].intervals[0].values.weatherCodeDay],
-            temperature: Math.floor(response.data.timelines[1].intervals[0].values.temperature),
-            temperatureMax: Math.floor(response.data.timelines[0].intervals[0].values.temperatureMax),
-            temperatureMin: Math.floor(response.data.timelines[0].intervals[0].values.temperatureMin),
-            hourlyConditions: [response.data.timelines[1].intervals[0].values],
+            weatherCodeDay: weatherCodes[response.data.timelines[0].intervals[0].values.weatherCodeDay],
+            temperature: `${Math.floor(response.data.timelines[0].intervals[0].values.temperature)}\xB0`,
+            temperatureMin: `${Math.floor(response.data.timelines[0].intervals[0].values.temperatureMin)}\xB0`,
+            temperatureMax: `${Math.floor(response.data.timelines[0].intervals[0].values.temperatureMax)}\xB0`,
+            conditions: response.data.timelines[1].intervals[0].values,
           },
-          hourly: response.data.timelines[1].intervals.slice(0, 24),
-          daily: response.data.timelines[0].intervals,
+          forecast: {
+            ...weather.forecast,
+            hourly: response.data.timelines[1].intervals.slice(0, 25),
+            daily: response.data.timelines[0].intervals,
+          }
         })
         setLoading(false)
       })
@@ -49,9 +62,9 @@ function App() {
           <div>Loading...</div>
         ) : (
           <div>
-            <CurrentWeather weather={weather.current} />
-            <ConditionsList weather={weather} setCondition={setCondition} />
-            <ForecastList weather={weather} condition={condition} />
+            <CurrentWeather weather={weather.current} city={city} />
+            <Conditions weather={weather.current} setCondition={setCondition} />
+            <ForecastList weather={weather.forecast} condition={condition} />
           </div>
         )
       }
