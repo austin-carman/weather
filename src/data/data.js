@@ -132,7 +132,7 @@ export const weatherCodes = {
   80000: "Thunderstorm"
 };
 
-export const weatherCodeNight = {
+export const weatherCodesNight = {
   0: "Unknown",
   10001: "Clear",
   11001: "Mostly Clear",

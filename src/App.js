@@ -1,6 +1,6 @@
 import CurrentWeather from './components/CurrentWeather';
 import { useEffect, useState } from "react";
-import { url, options, weatherCodes, moonPhases, precipitation, uvHealthRisk, getWindDirection } from "./data/data";
+import { url, options, weatherCodes, moonPhases, precipitation, uvHealthRisk, getWindDirection, weatherCodesNight } from "./data/data";
 import Conditions from './components/Conditions';
 import ForecastList from './components/ForecastList';
 
@@ -22,10 +22,13 @@ function App() {
       .then((response) => {
         // check if response.code is 429001 -> show error message that the request limit for this resource has been reached. Please wait and try again in an hour. Thank you for your patience
         // is there a better way to make these changes to the data or state??? function?
+        console.log("Day Code: ", response.data.timelines[0].intervals[0].values.weatherCodeDay);
+        console.log("Night Code: ", response.data.timelines[0].intervals[0].values.weatherCodeNight);
         setWeather({
           ...weather,
           // switch to weatherCodeFullDay instead of weatherCodeDay?
           weatherCodeDay: weatherCodes[response.data.timelines[0].intervals[0].values.weatherCodeDay],
+          weatherCodeNight: weatherCodesNight[response.data.timelines[0].intervals[0].values.weatherCodeNight],
           hourly: response.data.timelines[1].intervals.slice(0, 25).map((hourlyForecast) => {
             let hourlyConditions = hourlyForecast.values;
             hourlyConditions = {
