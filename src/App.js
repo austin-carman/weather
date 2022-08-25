@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { url, options, weatherCodes, moonPhases, precipitation, uvHealthRisk, getWindDirection, weatherCodesNight } from "./data/data";
 import Conditions from './components/Conditions';
 import ForecastList from './components/ForecastList';
+import Search from './components/Search';
 
 function App() {
   const initialWeatherState = {
@@ -87,6 +88,7 @@ function App() {
           <div>Loading...</div>
         ) : (
           <div>
+            <Search />
             <CurrentWeather weather={weather} city={city} />
             <Conditions weather={weather} setConditions={setConditions} />
             <ForecastList weather={weather} conditions={conditions} />
