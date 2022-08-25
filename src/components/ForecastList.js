@@ -1,21 +1,23 @@
 import ForecastItem from "./ForecastItem";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function ForecastList(props) {
-  const hourlyWeather = props.weather.hourly;
-  const dailyWeather = props.weather.daily;
-  const [isHourlyForecast, setIsHourlyForecast] = useState(true);
-  let weather = isHourlyForecast ? hourlyWeather : dailyWeather;
+  const [isHourlyForecast, setIsHourlyForecast] = useState(false);
+  let weather = isHourlyForecast ? props.weather.hourly : props.weather.daily;
+
+  useEffect(() => {
+    (props.conditions[0] === "moonPhase" || props.conditions[0] === "sunriseTime") && setIsHourlyForecast(false);
+  }, [props.conditions]);
 
   return (
     <div>
       <div>
-        <button onClick={() => setIsHourlyForecast(true)}>Hourly</button>
+        <button onClick={(props.conditions[0] === "moonPhase" || props.conditions[0] === "sunriseTime") ? null : () => setIsHourlyForecast(true)}>Hourly</button>
         <button onClick={() => setIsHourlyForecast(false)}>Daily</button>
       </div>
       <div>
         {weather.map((forecast, index) => {
-          return <ForecastItem key={index} forecast={forecast} isHourlyForecast={isHourlyForecast} condition={props.condition} />
+          return <ForecastItem key={index} forecast={forecast} isHourlyForecast={isHourlyForecast} conditions={props.conditions} />
         })}
       </div>
     </div>

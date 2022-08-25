@@ -1,5 +1,5 @@
 function ForecastItem(props) {
-  const { forecast, isHourlyForecast, condition } = props;
+  const { forecast, isHourlyForecast, conditions } = props;
   const weekdays = [
     "Sunday",
     "Monday",
@@ -17,8 +17,15 @@ function ForecastItem(props) {
       <h4>
         {isHourlyForecast ? time : weekdays[date.getUTCDay()]}
       </h4>
-      {/* condition icon */}
-      <h5>{Math.floor(forecast.values[condition])}</h5>
+      {conditions.map((condition, index) => {
+        if ((condition === "temperatureMin" || condition === "temperatureMax") && isHourlyForecast) {
+          return <div key={index}></div>;
+        }
+        if ((forecast[condition] === undefined || NaN)) {
+          return <h5 key={index}>Data Unavailable</h5>
+        }
+        return <h5 key={index}>{forecast[condition]}</h5>;
+      })}
     </div>
   )
 }

@@ -1,5 +1,9 @@
 const baseURL = "https://api.tomorrow.io/v4/timelines";
-let location = [21.315603, -157.858093]; // make state
+
+let location = [21.315603, -157.858093]; // make state (city) from user input and mapbox api
+
+let timezone = "US%2FHawaii"; // add to state
+
 const fields = [
   "temperature",
   "uvIndex",
@@ -8,39 +12,29 @@ const fields = [
   "weatherCodeNight",
   "temperatureMax",
   "temperatureMin",
-  // "temperatureApparent",
   "windDirection",
-  // "windGust",
   "precipitationProbability",
   "precipitationType",
-  // "rainIntensity",
-  // "rainAccumulation",
-  // "snowIntensity",
-  // "snowAccumulation",
   "sunriseTime",
   "sunsetTime",
   "moonPhase",
   "cloudCover",
-  // "tides",
   "humidity",
   "visibility",
   "uvHealthConcern",
-  // "epaHealthConcern",
-  // "wildfireSmokeIndex",
-  // "floodIndex",
-  // "primarySwellWaveSignificantHeight",
-  // "seaSurfaceTemperature",
 ];
-const units = "imperial";
-let timezone = "US%2FHawaii"; // add to state
+
+const units = "imperial"; // add to state???
+
 const apiKey = process.env.REACT_APP_API_KEY;
-let date = new Date(); // do I need this
-let currentDateISO = date.toISOString(); // do I need this  
+
 export const options = {
   method: 'GET',
   headers: { Accept: 'application/json', 'Accept-Encoding': 'gzip' }
 };
+
 export const url = `${baseURL}?location=${location}&fields=${fields.join('&fields=')}&units=${units}&timesteps=1h&timesteps=1d&startTime=now&endTime=nowPlus7d&timezone=${timezone}&apikey=${apiKey}`;
+
 export const weatherCodes = {
   0: "Unknown",
   10000: "Clear, Sunny",
@@ -137,6 +131,7 @@ export const weatherCodes = {
   80020: "Mostly Cloudy and Thunderstorm",
   80000: "Thunderstorm"
 };
+
 export const weatherCodeNight = {
   0: "Unknown",
   10001: "Clear",
@@ -281,6 +276,7 @@ export function getWindDirection(deg) {
 };
 
 export const precipitation = {
+  0: "Precipitation",
   1: "Rain",
   2: "Snow",
   3: "Freezing Rain",
