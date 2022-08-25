@@ -84,7 +84,7 @@ function App() {
           <div>Loading...</div>
         ) : (
           <div>
-            <Search />
+            <Search setCity={setCity} />
             <CurrentWeather weather={weather} city={city} />
             <Conditions weather={weather} setConditions={setConditions} />
             <ForecastList weather={weather} conditions={conditions} />

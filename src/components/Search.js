@@ -1,10 +1,16 @@
 import { useState } from "react";
 
-function Search() {
+function Search(props) {
+  const setCity = props.setCity;
   const [userInput, setUserInput] = useState("");
 
   const handleChange = (e) => {
     setUserInput(e.target.value)
+  }
+
+  const handleSubmit = () => {
+    setCity(userInput);
+    setUserInput("");
   }
 
   return (
@@ -15,6 +21,7 @@ function Search() {
         onChange={handleChange}
         value={userInput}
       />
+      <button onClick={handleSubmit}>Submit</button>
     </>
   )
 }
