@@ -1,5 +1,9 @@
 const baseURL = "https://api.tomorrow.io/v4/timelines";
-let location = [21.315603, -157.858093]; // make state
+
+let location = [21.315603, -157.858093]; // make state (city) from user input and mapbox api
+
+let timezone = "US%2FHawaii"; // add to state
+
 const fields = [
   "temperature",
   "uvIndex",
@@ -8,40 +12,30 @@ const fields = [
   "weatherCodeNight",
   "temperatureMax",
   "temperatureMin",
-  "temperatureApparent",
   "windDirection",
-  "windGust",
   "precipitationProbability",
   "precipitationType",
-  "rainIntensity",
-  "rainAccumulation",
-  "snowIntensity",
-  "snowAccumulation",
   "sunriseTime",
   "sunsetTime",
   "moonPhase",
   "cloudCover",
-  "tides",
   "humidity",
   "visibility",
   "uvHealthConcern",
-  "epaHealthConcern",
-  "wildfireSmokeIndex",
-  "floodIndex",
-  "primarySwellWaveSignificantHeight",
-  "seaSurfaceTemperature",
 ];
-const units = "imperial";
-let timezone = "US%2FHawaii"; // add to state
+
+const units = "imperial"; // add to state???
+
 const apiKey = process.env.REACT_APP_API_KEY;
-let date = new Date(); // do I need this
-let currentDateISO = date.toISOString(); // do I need this  
+
 export const options = {
   method: 'GET',
   headers: { Accept: 'application/json', 'Accept-Encoding': 'gzip' }
 };
-export const url = `${baseURL}?location=${location}&fields=${fields.join('&fields=')}&units=${units}&timesteps=1h&timesteps=1d&timesteps=current&startTime=now&endTime=nowPlus7d&timezone=${timezone}&apikey=${apiKey}`;
-export const weatherCodeDay = {
+
+export const url = `${baseURL}?location=${location}&fields=${fields.join('&fields=')}&units=${units}&timesteps=1h&timesteps=1d&startTime=now&endTime=nowPlus7d&timezone=${timezone}&apikey=${apiKey}`;
+
+export const weatherCodes = {
   0: "Unknown",
   10000: "Clear, Sunny",
   11000: "Mostly Clear",
@@ -137,6 +131,7 @@ export const weatherCodeDay = {
   80020: "Mostly Cloudy and Thunderstorm",
   80000: "Thunderstorm"
 };
+
 export const weatherCodeNight = {
   0: "Unknown",
   10001: "Clear",
@@ -232,4 +227,58 @@ export const weatherCodeNight = {
   80031: "Partly Cloudy and Thunderstorm",
   80021: "Mostly Cloudy and Thunderstorm",
   80001: "Thunderstorm"
+};
+
+export const moonPhases = {
+  0: "New",
+  1: "Waxing Crescent",
+  2: "First Quarter",
+  3: "Waxing Gibbous",
+  4: "Full",
+  5: "Waning Gibbous",
+  6: "Third Quarter",
+  7: "Waning Crescent",
+};
+
+export const uvHealthRisk = {
+  0: "Low",
+  1: "Low",
+  2: "Low",
+  3: "Moderate",
+  4: "Moderate",
+  5: "Moderate",
+  6: "High",
+  7: "High",
+  8: "Very High",
+  9: "Very High",
+  10: "Very High",
+  11: "Extreme",
+};
+
+export function getWindDirection(deg) {
+  if (deg >= 330 || (deg >= 0 && deg <= 30)) {
+    return "N";
+  } else if (deg > 30 && deg < 60) {
+    return "NE"
+  } else if (deg >= 60 && deg <= 120) {
+    return "E";
+  } else if (deg > 120 && deg < 150) {
+    return "SE"
+  } else if (deg >= 150 && deg <= 210) {
+    return "S";
+  } else if (deg > 210 && deg < 240) {
+    return "SW"
+  } else if (deg >= 240 && deg <= 300) {
+    return "W";
+  } else if (deg > 300 && deg < 330) {
+    return "NW"
+  }
+};
+
+export const precipitation = {
+  0: "Precipitation",
+  1: "Rain",
+  2: "Snow",
+  3: "Freezing Rain",
+  4: "Ice Pellets / Sleet",
 };
