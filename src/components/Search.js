@@ -1,7 +1,20 @@
+import { useState } from "react";
+
 function Search() {
+  const [userInput, setUserInput] = useState("");
+
+  const handleChange = (e) => {
+    setUserInput(e.target.value)
+  }
+
   return (
     <>
-      <h2>Search</h2>
+      <input
+        type="text"
+        placeholder="Search City or Zip"
+        onChange={handleChange}
+        value={userInput}
+      />
     </>
   )
 }
