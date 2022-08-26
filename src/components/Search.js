@@ -22,12 +22,14 @@ function Search(props) {
     if (searchText.length >= minQueryLength) {
       fetch(baseURL + dynamicURL, options)
         .then((res) => res.json())
-        .then((data) => setSearchSuggestions(data.features))
+        .then((data) => {
+          // console.log(data);
+          setSearchSuggestions(data.features);
+        })
         .catch((err) => {
           console.log("error: ", err);
         })
     }
-
   }, [searchText]);
 
   const handleChange = (e) => {
@@ -35,8 +37,16 @@ function Search(props) {
   }
 
   const handleSubmit = () => {
-    // submitting without clicking the auto suggested submits the top suggestion
     setCity(searchText);
+    setSearchText("");
+  }
+
+  const handleLocation = (index) => {
+    console.log("***: ", searchSuggestions[index].text, searchSuggestions[index].geometry.coordinates[1], searchSuggestions[index].geometry.coordinates[0]);
+    setCity({
+      cityName: searchSuggestions[index].text,
+      coordinates: [searchSuggestions[index].geometry.coordinates[1], searchSuggestions[index].geometry.coordinates[0]],
+    })
     setSearchText("");
   }
 
@@ -48,9 +58,9 @@ function Search(props) {
         onChange={handleChange}
         value={searchText}
       />
-      <button onClick={handleSubmit}>Submit</button>
-      {searchSuggestions.map((city) => {
-        return <div>{city.place_name}</div>
+      {/* <button onClick={handleSubmit}>Submit</button> */}
+      {(searchText.length >= minQueryLength) && searchSuggestions.map((city, index) => {
+        return <div key={index} onClick={() => handleLocation(index)}>{city.place_name}</div>
       })}
     </>
   )
