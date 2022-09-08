@@ -1,5 +1,5 @@
 function ForecastItem(props) {
-  const { forecast, isHourlyForecast, conditions } = props;
+  const { forecast, isHourlyForecast, conditions, timezone } = props;
   const weekdays = [
     "Sunday",
     "Monday",
@@ -10,7 +10,7 @@ function ForecastItem(props) {
     "Saturday"
   ];
   const date = new Date(forecast.startTime);
-  const time = date.toLocaleTimeString([], { hour: 'numeric' });
+  const time = date.toLocaleTimeString("en-US", { hour: 'numeric', timeZone: timezone });
 
   return (
     <div>

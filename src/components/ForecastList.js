@@ -17,7 +17,7 @@ function ForecastList(props) {
       </div>
       <div>
         {weather.map((forecast, index) => {
-          return <ForecastItem key={index} forecast={forecast} isHourlyForecast={isHourlyForecast} conditions={props.conditions} />
+          return <ForecastItem key={index} forecast={forecast} isHourlyForecast={isHourlyForecast} conditions={props.conditions} timezone={props.timezone} />
         })}
       </div>
     </div>

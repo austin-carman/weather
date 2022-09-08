@@ -23,7 +23,7 @@ function Search(props) {
       fetch(baseURL + dynamicURL, options)
         .then((res) => res.json())
         .then((data) => {
-          // console.log(data);
+          console.log(data);
           setSearchSuggestions(data.features);
         })
         .catch((err) => {
@@ -36,32 +36,53 @@ function Search(props) {
     setSearchText(e.target.value);
   }
 
-  const handleSubmit = () => {
-    setCity(searchText);
-    setSearchText("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleLocation(0)
   }
 
-  const handleLocation = (index) => {
-    console.log("***: ", searchSuggestions[index].text, searchSuggestions[index].geometry.coordinates[1], searchSuggestions[index].geometry.coordinates[0]);
-    setCity({
-      cityName: searchSuggestions[index].text,
-      coordinates: [searchSuggestions[index].geometry.coordinates[1], searchSuggestions[index].geometry.coordinates[0]],
-    })
+  const findCityName = (placeName) => {
+    const city = placeName.split(",").reverse();
+    return city[2];
+  }
+
+  const getTimezone = async (lat, long) => {
+    const timezoneApiKey = process.env.REACT_APP_TIMEZONE_KEY;
+    const location = `${lat},${long}`;
+    const timeStamp = Math.floor(Date.now() / 1000);
+    const url = `https://maps.googleapis.com/maps/api/timezone/json?location=${location}&timestamp=${timeStamp}&key=${timezoneApiKey}`;
+    const timezoneId = await fetch(url)
+    return timezoneId;
+  }
+
+  const handleLocation = async (index) => {
+    const lat = searchSuggestions[index].geometry.coordinates[1];
+    const long = searchSuggestions[index].geometry.coordinates[0]
+    getTimezone(lat, long)
+      .then((res) => res.json())
+      .then((result) => {
+        setCity({
+          cityName: findCityName(searchSuggestions[index].place_name),
+          coordinates: [lat, long],
+          timezone: result.timeZoneId,
+        })
+      });
     setSearchText("");
   }
 
   return (
     <>
-      <input
-        type="text"
-        placeholder="Search City or Zip"
-        onChange={handleChange}
-        value={searchText}
-      />
-      {/* <button onClick={handleSubmit}>Submit</button> */}
-      {(searchText.length >= minQueryLength) && searchSuggestions.map((city, index) => {
-        return <div key={index} onClick={() => handleLocation(index)}>{city.place_name}</div>
-      })}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Search City or Zip"
+          onChange={handleChange}
+          value={searchText}
+        />
+        {(searchText.length >= minQueryLength) && searchSuggestions.map((city, index) => {
+          return <div key={index} onClick={() => handleLocation(index)}>{city.place_name}</div>
+        })}
+      </form>
     </>
   )
 }
