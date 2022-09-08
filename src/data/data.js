@@ -1,39 +1,39 @@
-const baseURL = "https://api.tomorrow.io/v4/timelines";
+// const baseURL = "https://api.tomorrow.io/v4/timelines";
 
-let location = [21.315603, -157.858093]; // make state (city) from user input and mapbox api
+// let location = [21.315603, -157.858093]; // make state (city) from user input and mapbox api
 
-let timezone = "US%2FHawaii"; // add to state
+// let timezone = "US%2FHawaii"; // add to state
 
-const fields = [
-  "temperature",
-  "uvIndex",
-  "windSpeed",
-  "weatherCodeDay",
-  "weatherCodeNight",
-  "temperatureMax",
-  "temperatureMin",
-  "windDirection",
-  "precipitationProbability",
-  "precipitationType",
-  "sunriseTime",
-  "sunsetTime",
-  "moonPhase",
-  "cloudCover",
-  "humidity",
-  "visibility",
-  "uvHealthConcern",
-];
+// const fields = [
+//   "temperature",
+//   "uvIndex",
+//   "windSpeed",
+//   "weatherCodeDay",
+//   "weatherCodeNight",
+//   "temperatureMax",
+//   "temperatureMin",
+//   "windDirection",
+//   "precipitationProbability",
+//   "precipitationType",
+//   "sunriseTime",
+//   "sunsetTime",
+//   "moonPhase",
+//   "cloudCover",
+//   "humidity",
+//   "visibility",
+//   "uvHealthConcern",
+// ];
 
-const units = "imperial"; // add to state???
+// const units = "imperial"; // add to state???
 
-const apiKey = process.env.REACT_APP_API_KEY;
+// const apiKey = process.env.REACT_APP_API_KEY;
 
-export const options = {
-  method: 'GET',
-  headers: { Accept: 'application/json', 'Accept-Encoding': 'gzip' }
-};
+// export const options = {
+//   method: 'GET',
+//   headers: { Accept: 'application/json', 'Accept-Encoding': 'gzip' }
+// };
 
-export const url = `${baseURL}?location=${location}&fields=${fields.join('&fields=')}&units=${units}&timesteps=1h&timesteps=1d&startTime=now&endTime=nowPlus7d&timezone=${timezone}&apikey=${apiKey}`;
+// export const url = `${baseURL}?location=${location}&fields=${fields.join('&fields=')}&units=${units}&timesteps=1h&timesteps=1d&startTime=now&endTime=nowPlus7d&timezone=${timezone}&apikey=${apiKey}`;
 
 export const weatherCodes = {
   0: "Unknown",
