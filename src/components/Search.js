@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { getTimezone, findCityName } from "../helperFunctions/helperFunctions";
 
 function Search(props) {
   const setCity = props.setCity;
@@ -23,7 +24,6 @@ function Search(props) {
       fetch(baseURL + dynamicURL, options)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           setSearchSuggestions(data.features);
         })
         .catch((err) => {
@@ -39,20 +39,6 @@ function Search(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleLocation(0)
-  }
-
-  const findCityName = (placeName) => {
-    const city = placeName.split(",").reverse();
-    return city[2];
-  }
-
-  const getTimezone = async (lat, long) => {
-    const timezoneApiKey = process.env.REACT_APP_TIMEZONE_KEY;
-    const location = `${lat},${long}`;
-    const timeStamp = Math.floor(Date.now() / 1000);
-    const url = `https://maps.googleapis.com/maps/api/timezone/json?location=${location}&timestamp=${timeStamp}&key=${timezoneApiKey}`;
-    const timezoneId = await fetch(url)
-    return timezoneId;
   }
 
   const handleLocation = async (index) => {

@@ -10,7 +10,6 @@ function CurrentWeather(props) {
     <div>
       <h2>{city}</h2>
       <div>
-        {/* <h4>{weather.weatherCodeDay}</h4> */}
         {(timeInt > 5 && timeInt < 22) ? <h4>{weather.weatherCodeDay}</h4> : <h4>{weather.weatherCodeNight}</h4>}
       </div>
       <div>
