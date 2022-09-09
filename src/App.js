@@ -18,25 +18,32 @@ function App() {
   const [city, setCity] = useState({
     cityName: "Honolulu",
     coordinates: [21.315603, -157.858093], // lat, long
-    timezone: "US/Hawaii" // Starts at weather in Hawaii (change to user's location)
+    timezone: "US/Hawaii",
   });
 
   useEffect(() => {
-    const showPosition = (position) => {
-      const userCoordinates = [position.coords.latitude, position.coords.longitude]
-      getTimezone(userCoordinates[0], userCoordinates[1])
-        .then((res) => res.json())
-        .then((result) => {
-          setCity({ ...city, cityName: "Current Location", coordinates: userCoordinates, timezone: result.timeZoneId });
-        })
-    }
     const getUserLocation = () => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition)
-      } else {
-        console.log("Failed to get location");
-      }
-    }
+      navigator.geolocation.getCurrentPosition((position) => {
+        const userCoordinates = [position.coords.latitude, position.coords.longitude];
+        getTimezone(userCoordinates[0], userCoordinates[1])
+          .then((res) => res.json())
+          .then((result) => {
+            setCity({
+              ...city, cityName: "Current Location",
+              coordinates: userCoordinates,
+              timezone: result.timeZoneId,
+            });
+          })
+      },
+        function (error) {
+          setCity({
+            ...city,
+            cityName: "Honolulu",
+            coordinates: [21.315603, -157.858093],
+            timezone: "US/Hawaii",
+          })
+        })
+    };
     getUserLocation();
   }, [])
 
@@ -48,7 +55,8 @@ function App() {
     fetch(getWeatherUrl(city.coordinates, city.timezone), options)
       .then(response => response.json())
       .then((response) => {
-        // check if response.code is 429001 -> show error message that the request limit for this resource has been reached. Please wait and try again in an hour. Thank you for your patience
+        // check if response.code is 429001 -> show error message that the request limit for this resource has been reached. 
+        // Please wait and try again in an hour. Thank you for your patience
         // is there a better way to make these changes to the data or state??? function?
         setWeather({
           ...weather,
