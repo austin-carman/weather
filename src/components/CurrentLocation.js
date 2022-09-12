@@ -1,7 +1,7 @@
 import { getTimezone } from "../helperFunctions/helperFunctions";
 import { useState } from "react";
 
-function Home(props) {
+function CurrentLocation(props) {
   const { city, setCity } = props;
   const [loading, setLoading] = useState(false);
 
@@ -45,4 +45,4 @@ function Home(props) {
   )
 }
 
-export default Home;
+export default CurrentLocation;

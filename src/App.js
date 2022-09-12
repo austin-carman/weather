@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Weather from "./components/Weather";
 import Search from "./components/Search";
-import Home from "./components/Home";
+import CurrentLocation from "./components/CurrentLocation";
 
 function App() {
   const initialState = {
@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="App">
       <Search setCity={setCity} />
-      <Home city={city} setCity={setCity} />
+      <CurrentLocation city={city} setCity={setCity} />
       {city.timezone && <Weather city={city} />}
     </div>
   );
