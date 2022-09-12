@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 import { getWeatherUrl } from "../helperFunctions/helperFunctions";
-import Search from "./Search";
 import Conditions from './Conditions';
 import ForecastList from './ForecastList';
 import CurrentWeather from './CurrentWeather';
 import { weatherCodes, moonPhases, precipitation, uvHealthRisk, getWindDirection, weatherCodesNight } from "../data/data";
 
-// Get Weather for desired city
+// Get Weather for desired location
 function Weather(props) {
-  const { city, setCity } = props;
+  const { city } = props;
   const initialWeatherState = {
     weatherCodeDay: null,
     weatherCodeNight: null,
@@ -18,7 +17,7 @@ function Weather(props) {
   // loading while getting weather conditions for city
   const [loading, setLoading] = useState(true);
   const [weather, setWeather] = useState(initialWeatherState);
-  // conditions that are displayed in Hourly/Daily views
+  // conditions displayed in Hourly/Daily forecast
   const [conditions, setConditions] = useState(["temperature", "temperatureMin", "temperatureMax"]);
 
   useEffect(() => {
@@ -31,7 +30,7 @@ function Weather(props) {
     fetch(url, options)
       .then(response => response.json())
       .then((response) => {
-        // TOD0: check for errors -> Display corresponding message (429001 -> request limit reached)
+        // TODO: check for errors -> Display corresponding message (429001 -> request limit reached)
         // TODO: is there a better way to add units/measurements to each condition?
         setWeather({
           ...weather,
@@ -88,10 +87,10 @@ function Weather(props) {
     <div className="App">
       {
         loading ? (
+          // TODO: show animation during loading
           <div>Loading...</div>
         ) : (
           <div>
-            <Search setCity={setCity} />
             <CurrentWeather weather={weather} city={city.cityName} />
             <Conditions weather={weather} setConditions={setConditions} />
             <ForecastList weather={weather} conditions={conditions} timezone={city.timezone} />
