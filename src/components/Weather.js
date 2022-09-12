@@ -84,7 +84,7 @@ function Weather(props) {
   }, [city]);
 
   return (
-    <div className="App">
+    <>
       {
         loading ? (
           // TODO: show animation during loading
@@ -97,7 +97,7 @@ function Weather(props) {
           </div>
         )
       }
-    </div>
+    </>
   );
 }
 
