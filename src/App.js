@@ -2,6 +2,7 @@ import { useState } from "react";
 import Weather from "./components/Weather";
 import Search from "./components/Search";
 import CurrentLocation from "./components/CurrentLocation";
+import Home from "./components/Home";
 
 function App() {
   const initialState = {
@@ -16,7 +17,13 @@ function App() {
     <div className="App">
       <Search setCity={setCity} />
       <CurrentLocation city={city} setCity={setCity} />
-      {city.timezone && <Weather city={city} />}
+      {
+        city.timezone ? (
+          <Weather city={city} />
+        ) : (
+          <Home />
+        )
+      }
     </div>
   );
 }
