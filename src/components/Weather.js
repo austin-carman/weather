@@ -6,23 +6,20 @@ import ForecastList from './ForecastList';
 import CurrentWeather from './CurrentWeather';
 import { weatherCodes, moonPhases, precipitation, uvHealthRisk, getWindDirection, weatherCodesNight } from "../data/data";
 
+// Get Weather for desired city
 function Weather(props) {
-  const { userLocation } = props;
+  const { city, setCity } = props;
   const initialWeatherState = {
     weatherCodeDay: null,
+    weatherCodeNight: null,
     hourly: [],
     daily: [],
   };
-  const cityDefault = {
-    cityName: "Honolulu",
-    coordinates: [21.315603, -157.858093], // lat, long
-    timezone: "US/Hawaii",
-  }
-
+  // loading while getting weather conditions for city
   const [loading, setLoading] = useState(true);
   const [weather, setWeather] = useState(initialWeatherState);
+  // conditions that are displayed in Hourly/Daily views
   const [conditions, setConditions] = useState(["temperature", "temperatureMin", "temperatureMax"]);
-  const [city, setCity] = useState(userLocation.timezone ? userLocation : cityDefault);
 
   useEffect(() => {
     const options = {
@@ -30,12 +27,12 @@ function Weather(props) {
       headers: { Accept: 'application/json', 'Accept-Encoding': 'gzip' }
     };
     const url = getWeatherUrl(city.coordinates, city.timezone);
+    // get weather conditions for desired city and timezone
     fetch(url, options)
       .then(response => response.json())
       .then((response) => {
-        // check if response.code is 429001 -> show error message that the request limit for this resource has been reached. 
-        // Please wait and try again in an hour. Thank you for your patience
-        // is there a better way to make these changes to the data or state??? function?
+        // TOD0: check for errors -> Display corresponding message (429001 -> request limit reached)
+        // TODO: is there a better way to add units/measurements to each condition?
         setWeather({
           ...weather,
           weatherCodeDay: weatherCodes[response.data.timelines[0].intervals[0].values.weatherCodeDay],

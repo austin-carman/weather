@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { getTimezone, findCityName } from "../helperFunctions/helperFunctions";
 
+// Search for City
 function Search(props) {
-  const setCity = props.setCity;
+  const { setCity } = props;
   const [searchText, setSearchText] = useState("");
+  // Search suggestions based on user's input
   const [searchSuggestions, setSearchSuggestions] = useState([]);
 
   const mapboxApiKey = process.env.REACT_APP_MAPBOX_KEY;
+  // minimum characters required to start api for search suggestions
   const minQueryLength = 3;
   const baseURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
   const dynamicURL = `${searchText}.json?country=us&types=place%2Cpostcode%2Caddress&language=en&access_token=${mapboxApiKey}`;
@@ -21,6 +24,7 @@ function Search(props) {
 
   useEffect(() => {
     if (searchText.length >= minQueryLength) {
+      // get search suggestions based on user input
       fetch(baseURL + dynamicURL, options)
         .then((res) => res.json())
         .then((data) => {
@@ -38,12 +42,15 @@ function Search(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // hitting enter will submit the suggested location 
+    // most closely related to user input
     handleLocation(0)
   }
 
   const handleLocation = async (index) => {
     const lat = searchSuggestions[index].geometry.coordinates[1];
     const long = searchSuggestions[index].geometry.coordinates[0]
+    // get timezone for desired city
     getTimezone(lat, long)
       .then((res) => res.json())
       .then((result) => {
@@ -65,6 +72,7 @@ function Search(props) {
           onChange={handleChange}
           value={searchText}
         />
+        {/* TODO: Can I remove -> (searchText.length >= minQueryLength) -> from below? */}
         {(searchText.length >= minQueryLength) && searchSuggestions.map((city, index) => {
           return <div key={index} onClick={() => handleLocation(index)}>{city.place_name}</div>
         })}
