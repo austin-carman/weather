@@ -12,7 +12,6 @@ function App() {
   }
   const [city, setCity] = useState(initialState);
 
-
   return (
     <div className="App">
       <Search setCity={setCity} />

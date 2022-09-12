@@ -1,6 +1,11 @@
 function Home() {
   return (
-    <div>Home</div>
+    <div>
+      <div>Sun</div>
+      <div>Rain</div>
+      <div>Clouds</div>
+      <div>Snow</div>
+    </div>
   )
 }
 
