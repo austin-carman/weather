@@ -15,13 +15,8 @@ function App() {
   return (
     <div className="App">
       <Search setCity={setCity} />
-      {
-        !city.timezone ? (
-          <Home city={city} setCity={setCity} />
-        ) : (
-          <Weather city={city} />
-        )
-      }
+      <Home city={city} setCity={setCity} />
+      {city.timezone && <Weather city={city} />}
     </div>
   );
 }

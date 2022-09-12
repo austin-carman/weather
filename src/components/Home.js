@@ -35,7 +35,7 @@ function Home(props) {
   return (
     <div>
       {loading ? (
-        <div>Loading...</div>
+        <div>load...</div>
       ) : (
         <button onClick={handleClick}>Use Current Location</button>
       )
