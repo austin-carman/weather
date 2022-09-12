@@ -1,8 +1,10 @@
+// TODO: Loop over conditions and render component that creates a "card" for each condition?
+
+// Current weather conditions
 function Conditions(props) {
   const weather = props.weather;
   const setConditions = props.setConditions;
 
-  // try to change this to mirror forecast list/forecast item
   return (
     <div>
       <div onClick={() => setConditions(["temperature", "temperatureMin", "temperatureMax"])}>
