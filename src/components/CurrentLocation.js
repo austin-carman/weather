@@ -7,7 +7,7 @@ function CurrentLocation(props) {
 
   const handleClick = () => {
     setLoading(true);
-    // Get user's current location
+    // Get user's current location and set to city
     navigator.geolocation.getCurrentPosition((position) => {
       const userCoordinates = [
         position.coords.latitude,
@@ -25,7 +25,7 @@ function CurrentLocation(props) {
           setLoading(false);
         })
     },
-      // if unable to get user's current location
+      // if unable to get user's current location prompt for searching or edit settings
       function (error) {
         setLoading(false);
         alert("Unable to determine current location. Please use the search field to find desired location or edit browser settings to enable sharing current location.")
@@ -34,13 +34,13 @@ function CurrentLocation(props) {
 
   return (
     <div>
-      {loading ? (
-        <div>load...</div>
-      ) : (
-        <button onClick={handleClick}>Use Current Location</button>
-      )
+      {
+        loading ? (
+          <div>Loading...</div>
+        ) : (
+          <button onClick={handleClick}>Use Current Location</button>
+        )
       }
-      {/* TODO: add more to Home page */}
     </div>
   )
 }
