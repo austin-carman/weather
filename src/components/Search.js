@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { getTimezone, findCityName } from "../helperFunctions/helperFunctions";
 
-// Search for City
+// Search for location and get search suggestions
 function Search(props) {
   const { setCity } = props;
   const [searchText, setSearchText] = useState("");
-  // Search suggestions based on user's input
   const [searchSuggestions, setSearchSuggestions] = useState([]);
 
   const mapboxApiKey = process.env.REACT_APP_MAPBOX_KEY;
@@ -40,17 +39,16 @@ function Search(props) {
     setSearchText(e.target.value);
   }
 
+  // hitting enter will submit the suggested 
+  // location most closely related to user input
   const handleSubmit = (e) => {
     e.preventDefault();
-    // hitting enter will submit the suggested location 
-    // most closely related to user input
     handleLocation(0)
   }
 
   const handleLocation = async (index) => {
     const lat = searchSuggestions[index].geometry.coordinates[1];
     const long = searchSuggestions[index].geometry.coordinates[0]
-    // get timezone for desired city
     getTimezone(lat, long)
       .then((res) => res.json())
       .then((result) => {
