@@ -73,6 +73,8 @@ function Weather(props) {
               uvHealthConcern: uvHealthRisk[dailyConditions.uvIndex],
               uvIndex: dailyConditions.uvIndex,
               visibility: Math.round(dailyConditions.visibility) + " mi",
+              weatherCodeDay: dailyConditions.weatherCodeDay,
+              weatherCodeNight: dailyConditions.weatherCodeNight,
               windDirection: getWindDirection(dailyConditions.windDirection),
               windSpeed: Math.round(dailyConditions.windSpeed) + " mph",
             }
@@ -92,7 +94,7 @@ function Weather(props) {
           <div>Loading...</div>
         ) : (
           <div>
-            <CurrentWeather weather={weather} city={city.cityName} />
+            <CurrentWeather city={city.cityName} currentHourWeather={weather.hourly[0]} currentDayWeather={weather.daily[0]} />
             <Conditions weather={weather} setConditions={setConditions} />
             <ForecastList weather={weather} conditions={conditions} timezone={city.timezone} />
           </div>

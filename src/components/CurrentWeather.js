@@ -2,13 +2,11 @@ import { weatherDayCodes, weatherNightCodes } from "../data/data";
 
 // Displays current temp/temp low/temp high
 function CurrentWeather(props) {
-  const weather = props.weather;
-  const city = props.city;
+  const { currentHourWeather, currentDayWeather, city } = props;
 
   // To get current time (hour) as a number on a 1-24 hour scale
-  const date = new Date(weather.hourly[0].startTime);
+  const date = new Date(currentHourWeather.startTime);
   const time = date.toLocaleTimeString([], { hour: 'numeric', hour12: false });
-  const timeInt = parseInt(time);
 
   return (
     <div>
@@ -20,23 +18,23 @@ function CurrentWeather(props) {
         weatherCodeNight for conditions description
         */}
         {
-          (timeInt > 5 && timeInt < 22) ? (
+          (parseInt(time) > 5 && parseInt(time) < 22) ? (
             <div>
-              <img src={`icons/large/png/${weather.weatherCodeDay}.png`} alt="weather condition" />
-              <h4>{weatherDayCodes[weather.weatherCodeDay]}</h4>
+              <img src={`icons/large/png/${currentDayWeather.weatherCodeDay}.png`} alt="weather condition" />
+              <h4>{weatherDayCodes[currentDayWeather.weatherCodeDay]}</h4>
             </div>
           ) : (
             <div>
-              <img src={`icons/large/png/${weather.weatherCodeNight}.png`} alt="weather condition" />
-              <h4>{weatherNightCodes[weather.weatherCodeNight]}</h4>
+              <img src={`icons/large/png/${currentDayWeather.weatherCodeNight}.png`} alt="weather condition" />
+              <h4>{weatherNightCodes[currentDayWeather.weatherCodeNight]}</h4>
             </div>
           )
         }
       </div>
       <div>
-        <h3>{weather.hourly[0].temperature}</h3>
-        <h5>Low: {weather.daily[0].temperatureMin}</h5>
-        <h5>High: {weather.daily[0].temperatureMax}</h5>
+        <h3>{currentHourWeather.temperature}</h3>
+        <h5>Low: {currentDayWeather.temperatureMin}</h5>
+        <h5>High: {currentDayWeather.temperatureMax}</h5>
       </div>
     </div>
   )

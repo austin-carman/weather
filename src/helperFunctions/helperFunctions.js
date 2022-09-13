@@ -18,7 +18,6 @@ export const getWeatherUrl = (location, timezone) => {
     "temperature",
     "uvIndex",
     "windSpeed",
-    "weatherCodeFullDay",
     "weatherCodeDay",
     "weatherCodeNight",
     "temperatureMax",
