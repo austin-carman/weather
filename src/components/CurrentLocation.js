@@ -13,17 +13,37 @@ function CurrentLocation(props) {
         position.coords.latitude,
         position.coords.longitude
       ];
-      getTimezone(userCoordinates[0], userCoordinates[1])
-        .then((res) => res.json())
+      const options = {
+        method: "GET",
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json;charset=UTF-8",
+        }
+      };
+      const mapboxApiKey = process.env.REACT_APP_MAPBOX_KEY;
+      const getLocation = async () => {
+        try {
+          const locationName = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${userCoordinates[1]},${userCoordinates[0]}.json?access_token=${mapboxApiKey}`, options);
+          const locationTimezone = await getTimezone(userCoordinates[0], userCoordinates[1]);
+          const name = await locationName.json();
+          const timezone = await locationTimezone.json();
+          return [name.features[3].text, timezone.timeZoneId];
+        } catch (err) {
+          console.log("error: ", err);
+        }
+      }
+      getLocation()
         .then((result) => {
+          console.log("Name: ", result[0], "Zone: ", result[1])
           setCity({
             ...city,
-            cityName: "Current Location", // TODO: mapbox api reverse geolocation to get actual city name from coordinates
+            cityName: result[0],
             coordinates: userCoordinates,
-            timezone: result.timeZoneId,
+            timezone: result[1],
           });
           setLoading(false);
-        })
+        });
     },
       // if unable to get user's current location prompt for searching or edit settings
       function (error) {
