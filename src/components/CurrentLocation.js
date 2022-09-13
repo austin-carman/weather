@@ -5,9 +5,10 @@ function CurrentLocation(props) {
   const { city, setCity } = props;
   const [loading, setLoading] = useState(false);
 
+  // Get user's current location (user will be asked for permission to share location)
   const handleClick = () => {
     setLoading(true);
-    // Get user's current location
+    // User gives permission to share location
     navigator.geolocation.getCurrentPosition((position) => {
       const userCoordinates = [
         position.coords.latitude,
@@ -24,14 +25,14 @@ function CurrentLocation(props) {
       const mapboxApiKey = process.env.REACT_APP_MAPBOX_KEY;
       const getLocation = async () => {
         try {
-          // get location name from user's location coordinates (coordinates must be longitude,latitude in endpoint)
+          // get location name from user's coordinates (coordinates must be longitude,latitude in endpoint)
           const locationName = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${userCoordinates[1]},${userCoordinates[0]}.json?access_token=${mapboxApiKey}`, options);
-          // get timezone of user's location from coordinates: getTimezone(lat, long)
+          // get timezone from user's coordinates: getTimezone(lat, long)
           const locationTimezone = await getTimezone(userCoordinates[0], userCoordinates[1]);
           const name = await locationName.json();
           const timezone = await locationTimezone.json();
           return [name.features[3].text, timezone.timeZoneId];
-        } catch (err) {
+        } catch (err) { // TODO: handle errors
           console.log("error: ", err);
         }
       }
@@ -47,10 +48,10 @@ function CurrentLocation(props) {
           setLoading(false);
         });
     },
-      // if unable to get user's current location prompt for searching or edit settings
+      // If unable to get user's current location prompt for searching or edit settings
       function (error) {
         setLoading(false);
-        alert("Unable to determine current location. Please use the search field to find desired location or edit browser settings to enable sharing current location.")
+        alert("Unable to get current location. Please use the search field to find desired location or edit browser settings to enable sharing location.")
       })
   }
 

@@ -27,7 +27,7 @@ function Search(props) {
         .then((data) => {
           setSearchSuggestions(data.features);
         })
-        .catch((err) => {
+        .catch((err) => { // TODO: handle error
           console.log("error: ", err);
         })
     }
