@@ -27,7 +27,12 @@ function ForecastItem(props) {
         if ((forecast[condition] === undefined || NaN)) {
           return <h5 key={index}>Data Unavailable</h5>
         }
-        return <h5 key={index}>{forecast[condition]}</h5>;
+        return (
+          <div>
+            {(condition === "temperature" && isHourlyForecast === false) && <img src={`icons/large/png/${forecast.weatherCodeDay}.png`} alt="weather condition" />}
+            <h5 key={index}>{forecast[condition]}</h5>
+          </div>
+        );
       })}
     </div>
   )
