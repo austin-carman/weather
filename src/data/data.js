@@ -1,4 +1,4 @@
-export const weatherCodes = {
+export const weatherDayCodes = {
   0: "Unknown",
   10000: "Clear, Sunny",
   11000: "Mostly Clear",
@@ -95,7 +95,7 @@ export const weatherCodes = {
   80000: "Thunderstorm"
 };
 
-export const weatherCodesNight = {
+export const weatherNightCodes = {
   0: "Unknown",
   10001: "Clear",
   11001: "Mostly Clear",

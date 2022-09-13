@@ -1,3 +1,5 @@
+import { weatherDayCodes, weatherNightCodes } from "../data/data";
+
 // Displays current temp/temp low/temp high
 function CurrentWeather(props) {
   const weather = props.weather;
@@ -17,7 +19,19 @@ function CurrentWeather(props) {
         If current time is between 10pm and 5:00am use 
         weatherCodeNight for conditions description
         */}
-        {(timeInt > 5 && timeInt < 22) ? <h4>{weather.weatherCodeDay}</h4> : <h4>{weather.weatherCodeNight}</h4>}
+        {
+          (timeInt > 5 && timeInt < 22) ? (
+            <div>
+              <img src={`icons/large/png/${weather.weatherCodeDay}.png`} alt="weather condition" />
+              <h4>{weatherDayCodes[weather.weatherCodeDay]}</h4>
+            </div>
+          ) : (
+            <div>
+              <img src={`icons/large/png/${weather.weatherCodeNight}.png`} alt="weather condition" />
+              <h4>{weatherNightCodes[weather.weatherCodeNight]}</h4>
+            </div>
+          )
+        }
       </div>
       <div>
         <h3>{weather.hourly[0].temperature}</h3>
