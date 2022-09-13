@@ -7,7 +7,7 @@ function CurrentLocation(props) {
 
   const handleClick = () => {
     setLoading(true);
-    // Get user's current location and set to city
+    // Get user's current location
     navigator.geolocation.getCurrentPosition((position) => {
       const userCoordinates = [
         position.coords.latitude,
@@ -24,7 +24,9 @@ function CurrentLocation(props) {
       const mapboxApiKey = process.env.REACT_APP_MAPBOX_KEY;
       const getLocation = async () => {
         try {
+          // get location name from user's location coordinates (coordinates must be longitude,latitude in endpoint)
           const locationName = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${userCoordinates[1]},${userCoordinates[0]}.json?access_token=${mapboxApiKey}`, options);
+          // get timezone of user's location from coordinates: getTimezone(lat, long)
           const locationTimezone = await getTimezone(userCoordinates[0], userCoordinates[1]);
           const name = await locationName.json();
           const timezone = await locationTimezone.json();
@@ -35,7 +37,7 @@ function CurrentLocation(props) {
       }
       getLocation()
         .then((result) => {
-          console.log("Name: ", result[0], "Zone: ", result[1])
+          // result is [location name, location timezone]
           setCity({
             ...city,
             cityName: result[0],
