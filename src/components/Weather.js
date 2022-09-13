@@ -3,7 +3,8 @@ import { getWeatherUrl } from "../helperFunctions/helperFunctions";
 import Conditions from './Conditions';
 import ForecastList from './ForecastList';
 import CurrentWeather from './CurrentWeather';
-import { weatherCodes, moonPhases, precipitation, uvHealthRisk, getWindDirection, weatherCodesNight } from "../data/data";
+import { moonPhases, precipitation, uvHealthRisk, getWindDirection } from "../data/data";
+// import icon from "../icons/large/png";
 
 // Get Weather for desired location
 function Weather(props) {
@@ -34,8 +35,8 @@ function Weather(props) {
         // TODO: is there a better way to add units/measurements to each condition?
         setWeather({
           ...weather,
-          weatherCodeDay: weatherCodes[response.data.timelines[0].intervals[0].values.weatherCodeDay],
-          weatherCodeNight: weatherCodesNight[response.data.timelines[0].intervals[0].values.weatherCodeNight],
+          weatherCodeDay: response.data.timelines[0].intervals[0].values.weatherCodeDay,
+          weatherCodeNight: response.data.timelines[0].intervals[0].values.weatherCodeNight,
           hourly: response.data.timelines[1].intervals.slice(0, 25).map((hourlyForecast) => {
             let hourlyConditions = hourlyForecast.values;
             hourlyConditions = {
@@ -84,7 +85,7 @@ function Weather(props) {
   }, [city]);
 
   return (
-    <div className="App">
+    <>
       {
         loading ? (
           // TODO: show animation during loading
@@ -97,7 +98,7 @@ function Weather(props) {
           </div>
         )
       }
-    </div>
+    </>
   );
 }
 
