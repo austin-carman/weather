@@ -30,15 +30,26 @@ function ForecastItem(props) {
         if ((forecast[condition] === undefined || NaN)) {
           return <h5 key={index}>Data Unavailable</h5>
         }
+        if (condition === "precipitationType") {
+          return (
+            <div>
+              <h5>{weatherIcons[condition][forecast[condition]].icon}</h5>
+              <h5>{weatherIcons[condition][forecast[condition]].description}</h5>
+            </div>
+          )
+        }
+        if (condition === "precipitationProbability") {
+          <div>
+            <h5>{forecast[condition]}</h5>
+          </div>
+        }
         return (
           <div key={index}>
             {/* decide if temperature will be tomorrow.io icons or weatherIcons */}
-            {(condition === "temperature" && isHourlyForecast === false) && <img src={`icons/large/png/${forecast.weatherCodeDay}.png`} alt="weather condition" />}
-            {/* {condition === "moonPhase" ? <MoonIcon /> : weatherIcons[condition]} */}
+            {/* {(condition === "temperature" && isHourlyForecast === false) && <img src={`icons/large/png/${forecast.weatherCodeDay}.png`} alt="weather condition" />} */}
             {
               condition === "moonPhase" ? (
                 <div>
-                  {/* <MoonIcon /> */}
                   <h5>{weatherIcons[condition][forecast[condition]].icon}</h5>
                   <h5>{weatherIcons[condition][forecast[condition]].phase}</h5>
                 </div>
