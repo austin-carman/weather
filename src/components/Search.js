@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { findCityName } from "../helperFunctions/helperFunctions";
-import { getTimezone, getSearchSuggestions } from "../API/apiCalls";
+import { getTimezone, getSearchSuggestions } from "../api/apiCalls";
 
 // Search for location and get search suggestions
 function Search(props) {
@@ -24,6 +23,12 @@ function Search(props) {
 
   const handleChange = (e) => {
     setSearchText(e.target.value);
+  }
+
+  // Get city name from the user's search
+  const findCityName = (placeName) => {
+    const city = placeName.split(",").reverse();
+    return city[2];
   }
 
   // pressing "enter" will submit the most closely

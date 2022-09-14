@@ -1,4 +1,4 @@
-import { getTimezone, getLocationName } from "../API/apiCalls";
+import { getTimezone, getLocationName } from "../api/apiCalls";
 import { useState } from "react";
 
 function CurrentLocation(props) {
