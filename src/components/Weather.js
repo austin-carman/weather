@@ -3,7 +3,7 @@ import Conditions from './Conditions';
 import ForecastList from './ForecastList';
 import CurrentWeather from './CurrentWeather';
 import { moonPhases, precipitation, uvHealthRisk, getWindDirection } from "../data/data";
-import { getWeather } from "../api/apiCalls.js";
+import { getWeather } from "../api/apiCalls";
 
 // Get Weather
 function Weather(props) {
