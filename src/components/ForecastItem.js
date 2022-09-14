@@ -1,4 +1,4 @@
-import { moonPhases } from "../data/data";
+import { moonPhases, weatherIcons } from "../data/data";
 
 // Displays Hourly or Daily conditions
 function ForecastItem(props) {
@@ -22,6 +22,7 @@ function ForecastItem(props) {
         {isHourlyForecast ? time : weekdays[date.getUTCDay()]}
       </h4>
       {conditions.map((condition, index) => {
+        console.log(condition);
         const MoonIcon = condition === "moonPhase" && moonPhases[forecast[condition]].icon;
         // Don't display temp low/temp high on hourly forecast (only daily)
         if ((condition === "temperatureMin" || condition === "temperatureMax") && isHourlyForecast) {
@@ -32,15 +33,20 @@ function ForecastItem(props) {
         }
         return (
           <div key={index}>
+            {/* decide if temperature will be tomorrow.io icons or weatherIcons */}
             {(condition === "temperature" && isHourlyForecast === false) && <img src={`icons/large/png/${forecast.weatherCodeDay}.png`} alt="weather condition" />}
+            {/* {condition === "moonPhase" ? <MoonIcon /> : weatherIcons[condition]} */}
             {
               condition === "moonPhase" ? (
                 <div>
-                  <MoonIcon />
+                  {/* <MoonIcon /> */}
                   <h5>{moonPhases[forecast[condition]].phase}</h5>
                 </div>
               ) : (
-                <h5>{forecast[condition]}</h5>
+                <div>
+                  {weatherIcons[condition]}
+                  <h5>{forecast[condition]}</h5>
+                </div>
               )
             }
           </div>

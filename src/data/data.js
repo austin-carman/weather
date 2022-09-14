@@ -227,6 +227,52 @@ export const moonPhases = {
   },
 };
 
+export const weatherIcons = {
+  "temperature": <i className="bi bi-thermometer-half"></i>,
+  "cloudCover": <i className="bi bi-clouds"></i>,
+  "humidity": <i className="bi bi-moisture"></i>,
+  "moonPhase": {
+    0: {
+      phase: <h5>New</h5>,
+      icon: <WiMoonAltNew />,
+    },
+    1: {
+      phase: <h5>Waxing Crescent</h5>,
+      icon: <WiMoonAltWaxingCrescent4 />,
+    },
+    2: {
+      phase: <h5>First Quarter</h5>,
+      icon: <WiMoonAltFirstQuarter />,
+    },
+    3: {
+      phase: <h5>Waxing Gibbous</h5>,
+      icon: <WiMoonAltWaxingGibbous4 />,
+    },
+    4: {
+      phase: <h5>Full</h5>,
+      icon: <WiMoonAltFull />,
+    },
+    5: {
+      phase: <h5>Waning Gibbous</h5>,
+      icon: <WiMoonAltWaningGibbous4 />,
+    },
+    6: {
+      phase: <h5>Third Quarter</h5>,
+      icon: <WiMoonAltThirdQuarter />,
+    },
+    7: {
+      phase: <h5>Waning Crescent</h5>,
+      icon: <WiMoonAltWaningCrescent4 />,
+    },
+  },
+  // "precipitationType": ,
+  "sunriseTime": <i className="bi bi-sunrise"></i>,
+  "sunsetTime": <i className="bi bi-sunset"></i>,
+  "uvIndex": <i className="bi bi-sun"></i>,
+  "visibility": <i className="bi bi-eye"></i>,
+  "windSpeed": <i className="bi bi-wind"></i>,
+}
+
 export const uvHealthRisk = {
   0: "Low",
   1: "Low",
