@@ -27,11 +27,11 @@ function Conditions(props) {
       <div onClick={() => setConditions(["moonPhase"])}>
         <h4>Moon Phase:</h4>
         {weatherIcons["moonPhase"][weather.daily[0].moonPhase].icon}
-        {weatherIcons["moonPhase"][weather.daily[0].moonPhase].phase}
+        <h5>{weatherIcons["moonPhase"][weather.daily[0].moonPhase].phase}</h5>
       </div>
       <div onClick={() => setConditions(["precipitationType", "precipitationProbability"])}>
-        <h4>{weather.daily[0].precipitationType}</h4>
-        {weather.daily[0].precipitationType === "Snow" ? <i className="bi bi-cloud-snow"></i> : <i className="bi bi-cloud-rain"></i>}
+        <h4>{weatherIcons["precipitationType"][weather.daily[0].precipitationType].description}</h4>
+        {weatherIcons["precipitationType"][weather.daily[0].precipitationType].icon}
         <h5>{weather.hourly[0].precipitationProbability}</h5>
       </div>
       <div onClick={() => setConditions(["sunriseTime", "sunsetTime"])}>

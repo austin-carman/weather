@@ -233,39 +233,60 @@ export const weatherIcons = {
   "humidity": <i className="bi bi-moisture"></i>,
   "moonPhase": {
     0: {
-      phase: <h5>New</h5>,
+      phase: "New",
       icon: <WiMoonAltNew />,
     },
     1: {
-      phase: <h5>Waxing Crescent</h5>,
+      phase: "Waxing Crescent",
       icon: <WiMoonAltWaxingCrescent4 />,
     },
     2: {
-      phase: <h5>First Quarter</h5>,
+      phase: "First Quarter",
       icon: <WiMoonAltFirstQuarter />,
     },
     3: {
-      phase: <h5>Waxing Gibbous</h5>,
+      phase: "Waxing Gibbous",
       icon: <WiMoonAltWaxingGibbous4 />,
     },
     4: {
-      phase: <h5>Full</h5>,
+      phase: "Full",
       icon: <WiMoonAltFull />,
     },
     5: {
-      phase: <h5>Waning Gibbous</h5>,
+      phase: "Waning Gibbous",
       icon: <WiMoonAltWaningGibbous4 />,
     },
     6: {
-      phase: <h5>Third Quarter</h5>,
+      phase: "Third Quarter",
       icon: <WiMoonAltThirdQuarter />,
     },
     7: {
-      phase: <h5>Waning Crescent</h5>,
+      phase: "Waning Crescent",
       icon: <WiMoonAltWaningCrescent4 />,
     },
   },
-  // "precipitationType": ,
+  "precipitationType": {
+    0: {
+      description: "Precipitation",
+      icon: <i className="bi bi-cloud-rain"></i>,
+    },
+    1: {
+      description: "Rain",
+      icon: <i className="bi bi-cloud-rain"></i>,
+    },
+    2: {
+      description: "Snow",
+      icon: <i className="bi bi-cloud-snow"></i>,
+    },
+    3: {
+      description: "Freezing Rain",
+      icon: <i class="bi bi-cloud-sleet"></i>,
+    },
+    4: {
+      description: "Sleet",
+      icon: <i class="bi bi-cloud-sleet"></i>,
+    },
+  },
   "sunriseTime": <i className="bi bi-sunrise"></i>,
   "sunsetTime": <i className="bi bi-sunset"></i>,
   "uvIndex": <i className="bi bi-sun"></i>,
