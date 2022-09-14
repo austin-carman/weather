@@ -1,5 +1,3 @@
-// TODO: Loop over conditions and render component that creates a "card" for each condition?
-
 // Current weather conditions
 function Conditions(props) {
   const weather = props.weather;

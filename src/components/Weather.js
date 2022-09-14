@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import { getWeatherUrl } from "../helperFunctions/helperFunctions";
 import Conditions from './Conditions';
 import ForecastList from './ForecastList';
 import CurrentWeather from './CurrentWeather';
 import { moonPhases, precipitation, uvHealthRisk, getWindDirection } from "../data/data";
-// import icon from "../icons/large/png";
+import { getWeather } from "../api/apiCalls.js";
 
-// Get Weather for desired location
+// Get Weather
 function Weather(props) {
   const { city } = props;
   const initialWeatherState = {
@@ -15,24 +14,15 @@ function Weather(props) {
     hourly: [],
     daily: [],
   };
-  // loading while getting weather conditions for city
   const [loading, setLoading] = useState(true);
   const [weather, setWeather] = useState(initialWeatherState);
-  // conditions displayed in Hourly/Daily forecast
+  // conditions displayed in ForecastItem.js as Hourly/Daily forecast - temp conditions will be default
   const [conditions, setConditions] = useState(["temperature", "temperatureMin", "temperatureMax"]);
 
   useEffect(() => {
-    const options = {
-      method: 'GET',
-      headers: { Accept: 'application/json', 'Accept-Encoding': 'gzip' }
-    };
-    const url = getWeatherUrl(city.coordinates, city.timezone);
-    // get weather conditions for desired city and timezone
-    fetch(url, options)
+    getWeather(city.coordinates, city.timezone)
       .then(response => response.json())
       .then((response) => {
-        // TODO: check for errors -> Display corresponding message (429001 -> request limit reached)
-        // TODO: is there a better way to add units/measurements to each condition?
         setWeather({
           ...weather,
           weatherCodeDay: response.data.timelines[0].intervals[0].values.weatherCodeDay,
@@ -83,15 +73,14 @@ function Weather(props) {
         })
         setLoading(false)
       })
-      .catch(err => console.error(err));
+      .catch(err => console.error(err));  // TODO: handle errors
   }, [city]);
 
   return (
     <>
       {
         loading ? (
-          // TODO: show animation during loading
-          <div>Loading...</div>
+          <div>Loading...</div> // TODO: animation for loading?
         ) : (
           <div>
             <CurrentWeather city={city.cityName} currentHourWeather={weather.hourly[0]} currentDayWeather={weather.daily[0]} />

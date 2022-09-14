@@ -16,8 +16,7 @@ function ForecastList(props) {
   return (
     <div>
       <div>
-        {/* TODO: grey out the button and make inactive for below scenario instead of removing it completely */}
-        {/* don't display the Hourly button as an option for conditions that don't have hourly forecast */}
+        {/* TODO: grey out the hourly button and make inactive for conditions that don't apply to hourly view, instead of removing hourly button completely */}
         <button onClick={(conditions[0] === "moonPhase" || conditions[0] === "sunriseTime") ? null : () => setIsHourlyForecast(true)}>Hourly</button>
         <button onClick={() => setIsHourlyForecast(false)}>Daily</button>
       </div>

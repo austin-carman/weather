@@ -28,9 +28,9 @@ function ForecastItem(props) {
           return <h5 key={index}>Data Unavailable</h5>
         }
         return (
-          <div>
+          <div key={index}>
             {(condition === "temperature" && isHourlyForecast === false) && <img src={`icons/large/png/${forecast.weatherCodeDay}.png`} alt="weather condition" />}
-            <h5 key={index}>{forecast[condition]}</h5>
+            <h5>{forecast[condition]}</h5>
           </div>
         );
       })}

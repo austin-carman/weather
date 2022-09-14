@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getTimezone, findCityName } from "../helperFunctions/helperFunctions";
+import { getTimezone, getSearchSuggestions } from "../api/apiCalls";
 
 // Search for location and get search suggestions
 function Search(props) {
@@ -9,25 +9,13 @@ function Search(props) {
   const minQueryLength = 3; // min # of characters in input to get search suggestions
 
   useEffect(() => {
-    const mapboxApiKey = process.env.REACT_APP_MAPBOX_KEY;
-    const baseURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
-    const dynamicURL = `${searchText}.json?country=us&types=place%2Cpostcode%2Caddress&language=en&access_token=${mapboxApiKey}`;
-    const options = {
-      method: "GET",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json;charset=UTF-8",
-      }
-    };
     if (searchText.length >= minQueryLength) {
-      // get search suggestions based on user input
-      fetch(baseURL + dynamicURL, options)
+      getSearchSuggestions(searchText)
         .then((res) => res.json())
         .then((data) => {
           setSearchSuggestions(data.features);
         })
-        .catch((err) => {
+        .catch((err) => { // TODO: handle error
           console.log("error: ", err);
         })
     }
@@ -37,6 +25,12 @@ function Search(props) {
     setSearchText(e.target.value);
   }
 
+  // Get city name from the user's search
+  const findCityName = (placeName) => {
+    const city = placeName.split(",").reverse();
+    return city[2];
+  }
+
   // pressing "enter" will submit the most closely
   // related search suggestion (first option listed)
   const handleSubmit = (e) => {
@@ -44,7 +38,7 @@ function Search(props) {
     handleLocation(0)
   }
 
-  const handleLocation = async (index) => {
+  const handleLocation = (index) => {
     const lat = searchSuggestions[index].geometry.coordinates[1];
     const long = searchSuggestions[index].geometry.coordinates[0]
     getTimezone(lat, long)
