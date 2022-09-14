@@ -51,7 +51,7 @@ function Weather(props) {
             dailyConditions = {
               cloudCover: Math.round(dailyConditions.cloudCover) + "%",
               humidity: Math.round(dailyConditions.humidity) + "%",
-              moonPhase: moonPhases[dailyConditions.moonPhase],
+              moonPhase: dailyConditions.moonPhase,
               precipitationProbability: dailyConditions.precipitationProbability + "%",
               precipitationType: precipitation[dailyConditions.precipitationType],
               sunriseTime: new Date(dailyConditions.sunriseTime).toLocaleTimeString([], { hour: "numeric", minute: "numeric" }),
