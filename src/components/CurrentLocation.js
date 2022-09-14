@@ -1,4 +1,4 @@
-import { getTimezone, getLocationName } from "../helperFunctions/helperFunctions";
+import { getTimezone, getLocationName } from "../API/apiCalls";
 import { useState } from "react";
 
 function CurrentLocation(props) {
