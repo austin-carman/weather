@@ -11,7 +11,6 @@ function Search(props) {
 
   useEffect(() => {
     if (searchText.length >= minQueryLength) {
-      // get search suggestions based on user input
       getSearchSuggestions(searchText)
         .then((res) => res.json())
         .then((data) => {

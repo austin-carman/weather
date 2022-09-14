@@ -1,3 +1,4 @@
+// Get the name of current location from coordinates
 export const getLocationName = async (lat, long) => {
   const options = {
     method: "GET",
@@ -12,6 +13,7 @@ export const getLocationName = async (lat, long) => {
   return locationName
 }
 
+// Get the timezone from coordinates
 export const getTimezone = async (lat, long) => {
   const timezoneApiKey = process.env.REACT_APP_TIMEZONE_KEY;
   const location = `${lat},${long}`;
@@ -21,6 +23,7 @@ export const getTimezone = async (lat, long) => {
   return timezoneId;
 }
 
+// Get Search Suggestions for locations based on user input
 export const getSearchSuggestions = async (searchText) => {
   const mapboxApiKey = process.env.REACT_APP_MAPBOX_KEY;
   const baseURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
