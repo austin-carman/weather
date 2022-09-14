@@ -12,6 +12,20 @@ export const findCityName = (placeName) => {
   return city[2];
 }
 
+export const getLocationName = async (lat, long) => {
+  const options = {
+    method: "GET",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json;charset=UTF-8",
+    }
+  };
+  const mapboxApiKey = process.env.REACT_APP_MAPBOX_KEY;
+  const locationName = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${long},${lat}.json?access_token=${mapboxApiKey}`, options)
+  return locationName
+}
+
 export const getWeatherUrl = (location, timezone) => {
   const baseURL = "https://api.tomorrow.io/v4/timelines";
   const fields = [

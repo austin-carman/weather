@@ -4,9 +4,8 @@ import Conditions from './Conditions';
 import ForecastList from './ForecastList';
 import CurrentWeather from './CurrentWeather';
 import { moonPhases, precipitation, uvHealthRisk, getWindDirection } from "../data/data";
-// import icon from "../icons/large/png";
 
-// Get Weather for desired location
+// Get Weather
 function Weather(props) {
   const { city } = props;
   const initialWeatherState = {
@@ -15,10 +14,9 @@ function Weather(props) {
     hourly: [],
     daily: [],
   };
-  // loading while getting weather conditions for city
   const [loading, setLoading] = useState(true);
   const [weather, setWeather] = useState(initialWeatherState);
-  // conditions displayed in Hourly/Daily forecast
+  // conditions displayed in ForecastItem.js as Hourly/Daily forecast - temp conditions will be default
   const [conditions, setConditions] = useState(["temperature", "temperatureMin", "temperatureMax"]);
 
   useEffect(() => {
