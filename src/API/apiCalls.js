@@ -1,4 +1,4 @@
-// Get the name of current location from coordinates
+// Get the name of user's current location from coordinates
 export const getLocationName = async (lat, long) => {
   const options = {
     method: "GET",
@@ -13,7 +13,7 @@ export const getLocationName = async (lat, long) => {
   return locationName
 }
 
-// Get the timezone from coordinates
+// Get the user's current timezone from coordinates
 export const getTimezone = async (lat, long) => {
   const timezoneApiKey = process.env.REACT_APP_TIMEZONE_KEY;
   const location = `${lat},${long}`;
@@ -39,4 +39,38 @@ export const getSearchSuggestions = async (searchText) => {
   const url = baseURL + dynamicURL;
   const suggestions = await fetch(url, options)
   return suggestions;
+}
+
+// Get weather for desired location
+export const getWeather = async (location, timezone) => {
+  const baseURL = "https://api.tomorrow.io/v4/timelines";
+  const fields = [
+    "temperature",
+    "uvIndex",
+    "windSpeed",
+    "weatherCodeDay",
+    "weatherCodeNight",
+    "temperatureMax",
+    "temperatureMin",
+    "windDirection",
+    "precipitationProbability",
+    "precipitationType",
+    "sunriseTime",
+    "sunsetTime",
+    "moonPhase",
+    "cloudCover",
+    "humidity",
+    "visibility",
+    "uvHealthConcern",
+  ];
+  const units = "imperial"; // TODO: allow user to pick units (imperial vs metric)
+  const apiKey = process.env.REACT_APP_API_KEY;
+  // ?Question?: is there a better way to construct the endpoint?
+  const url = `${baseURL}?location=${location}&fields=${fields.join('&fields=')}&units=${units}&timesteps=1h&timesteps=1d&startTime=now&endTime=nowPlus7d&timezone=${timezone}&apikey=${apiKey}`;
+  const options = {
+    method: 'GET',
+    headers: { Accept: 'application/json', 'Accept-Encoding': 'gzip' }
+  };
+  const weather = await fetch(url, options);
+  return weather;
 }
