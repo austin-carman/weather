@@ -1,3 +1,5 @@
+import { WiMoonAltNew, WiMoonAltFull, WiMoonAltThirdQuarter, WiMoonAltFirstQuarter, WiMoonAltWaningCrescent4, WiMoonAltWaxingCrescent4, WiMoonAltWaxingGibbous4, WiMoonAltWaningGibbous4 } from "weather-icons-react";
+
 export const weatherCodes = {
   0: "Unknown",
   // start of weatherCodesDay
@@ -191,14 +193,38 @@ export const weatherCodes = {
 };
 
 export const moonPhases = {
-  0: "New",
-  1: "Waxing Crescent",
-  2: "First Quarter",
-  3: "Waxing Gibbous",
-  4: "Full",
-  5: "Waning Gibbous",
-  6: "Third Quarter",
-  7: "Waning Crescent",
+  0: {
+    phase: "New",
+    icon: WiMoonAltNew,
+  },
+  1: {
+    phase: "Waxing Crescent",
+    icon: WiMoonAltWaxingCrescent4,
+  },
+  2: {
+    phase: "First Quarter",
+    icon: WiMoonAltFirstQuarter,
+  },
+  3: {
+    phase: "Waxing Gibbous",
+    icon: WiMoonAltWaxingGibbous4,
+  },
+  4: {
+    phase: "Full",
+    icon: WiMoonAltFull,
+  },
+  5: {
+    phase: "Waning Gibbous",
+    icon: WiMoonAltWaningGibbous4,
+  },
+  6: {
+    phase: "Third Quarter",
+    icon: WiMoonAltThirdQuarter,
+  },
+  7: {
+    phase: "Waning Crescent",
+    icon: WiMoonAltWaningCrescent4,
+  },
 };
 
 export const uvHealthRisk = {
