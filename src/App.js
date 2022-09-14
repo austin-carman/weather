@@ -14,6 +14,7 @@ function App() {
 
   return (
     <div className="App">
+      <h2>Weather</h2>
       <Search setCity={setCity} />
       <CurrentLocation city={city} setCity={setCity} />
       {
@@ -23,6 +24,7 @@ function App() {
           <Home />
         )
       }
+      <img src="Powered_by_Tomorrow-Black.png" alt="Powered by Tomorrow.io" />
     </div>
   );
 }
