@@ -1,3 +1,5 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "../src/App.css";
 import { useState } from "react";
 import Weather from "./components/Weather";
 import Search from "./components/Search";
@@ -14,9 +16,14 @@ function App() {
 
   return (
     <div className="App">
-      <h2>Weather</h2>
-      <Search setCity={setCity} />
-      <CurrentLocation city={city} setCity={setCity} />
+      <div>
+        <h2>Weather</h2>
+        <img src="Powered_by_Tomorrow-Black.png" alt="Powered by Tomorrow.io" />
+      </div>
+      <div>
+        <Search setCity={setCity} />
+        <CurrentLocation city={city} setCity={setCity} />
+      </div>
       {
         city.timezone ? (
           <Weather city={city} />
@@ -24,7 +31,6 @@ function App() {
           <Home />
         )
       }
-      <img src="Powered_by_Tomorrow-Black.png" alt="Powered by Tomorrow.io" />
     </div>
   );
 }
