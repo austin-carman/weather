@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Conditions from './Conditions';
 import ForecastList from './ForecastList';
 import CurrentWeather from './CurrentWeather';
-import { moonPhases, precipitation, uvHealthRisk, getWindDirection } from "../data/data";
+import { uvHealthRisk, getWindDirection } from "../data/data";
 import { getWeather } from "../api/apiCalls";
 
 // Get Weather
@@ -33,9 +33,7 @@ function Weather(props) {
               cloudCover: Math.round(hourlyConditions.cloudCover) + "%",
               humidity: Math.round(hourlyConditions.humidity) + "%",
               precipitationProbability: hourlyConditions.precipitationProbability + "%",
-              precipitationType: precipitation[hourlyConditions.precipitationType],
-              sunriseTime: new Date(hourlyConditions.sunriseTime).toLocaleTimeString([], { hour: "numeric", minute: "numeric" }),
-              sunsetTime: new Date(hourlyConditions.sunsetTime).toLocaleTimeString([], { hour: "numeric", minute: "numeric" }),
+              precipitationType: hourlyConditions.precipitationType,
               temperature: Math.floor(hourlyConditions.temperature) + "\xB0",
               startTime: hourlyForecast.startTime,
               uvHealthConcern: uvHealthRisk[hourlyConditions.uvIndex],
@@ -43,6 +41,8 @@ function Weather(props) {
               visibility: Math.round(hourlyConditions.visibility) + " mi",
               windDirection: getWindDirection(hourlyConditions.windDirection),
               windSpeed: Math.round(hourlyConditions.windSpeed) + " mph",
+              weatherCodeDay: response.data.timelines[0].intervals[0].values.weatherCodeDay,
+              weatherCodeNight: response.data.timelines[0].intervals[0].values.weatherCodeNight,
             }
             return hourlyConditions;
           }),
@@ -53,7 +53,7 @@ function Weather(props) {
               humidity: Math.round(dailyConditions.humidity) + "%",
               moonPhase: dailyConditions.moonPhase,
               precipitationProbability: dailyConditions.precipitationProbability + "%",
-              precipitationType: precipitation[dailyConditions.precipitationType],
+              precipitationType: dailyConditions.precipitationType,
               sunriseTime: new Date(dailyConditions.sunriseTime).toLocaleTimeString([], { hour: "numeric", minute: "numeric" }),
               sunsetTime: new Date(dailyConditions.sunsetTime).toLocaleTimeString([], { hour: "numeric", minute: "numeric" }),
               temperature: Math.floor(dailyConditions.temperature) + "\xB0",
