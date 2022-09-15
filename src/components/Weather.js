@@ -34,8 +34,6 @@ function Weather(props) {
               humidity: Math.round(hourlyConditions.humidity) + "%",
               precipitationProbability: hourlyConditions.precipitationProbability + "%",
               precipitationType: hourlyConditions.precipitationType,
-              sunriseTime: new Date(hourlyConditions.sunriseTime).toLocaleTimeString([], { hour: "numeric", minute: "numeric" }),
-              sunsetTime: new Date(hourlyConditions.sunsetTime).toLocaleTimeString([], { hour: "numeric", minute: "numeric" }),
               temperature: Math.floor(hourlyConditions.temperature) + "\xB0",
               startTime: hourlyForecast.startTime,
               uvHealthConcern: uvHealthRisk[hourlyConditions.uvIndex],
@@ -43,6 +41,8 @@ function Weather(props) {
               visibility: Math.round(hourlyConditions.visibility) + " mi",
               windDirection: getWindDirection(hourlyConditions.windDirection),
               windSpeed: Math.round(hourlyConditions.windSpeed) + " mph",
+              weatherCodeDay: response.data.timelines[0].intervals[0].values.weatherCodeDay,
+              weatherCodeNight: response.data.timelines[0].intervals[0].values.weatherCodeNight,
             }
             return hourlyConditions;
           }),

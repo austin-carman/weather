@@ -15,20 +15,17 @@ function ForecastItem(props) {
   // date and local time of location
   const date = new Date(forecast.startTime);
   const time = date.toLocaleTimeString("en-US", { hour: 'numeric', timeZone: timezone });
-
+  // used to differentiate day weather code and night weather code
+  const militaryTime = date.toLocaleTimeString([], { hour: 'numeric', hour12: false });
   return (
     <div>
       <h4>
         {isHourlyForecast ? time : weekdays[date.getUTCDay()]}
       </h4>
       {conditions.map((condition, index) => {
-        // conditions that have unique cases:
-        // temperature, temperatureMin, temperatureMax -> icon, hourly vs daily
-        // moonPhase -> icon, description
-        // precipitationType, precipitationProbability -> 
-
-
-        // const MoonIcon = condition === "moonPhase" && moonPhases[forecast[condition]].icon;
+        if (condition === "temperature") {
+          console.log(forecast.weatherCodeDay);
+        }
         // Don't display temp low/temp high on hourly forecast (only daily)
         if ((condition === "temperatureMin" || condition === "temperatureMax") && isHourlyForecast) {
           return null;
@@ -37,35 +34,20 @@ function ForecastItem(props) {
           return <h5 key={index}>Data Unavailable</h5>
         }
         if (condition === "precipitationType") {
+          return <h5 key={index}>{weatherIcons[condition][forecast[condition]].icon}</h5>
+        }
+        if (condition === "moonPhase") {
           return (
-            <div>
+            <div key={index}>
               <h5>{weatherIcons[condition][forecast[condition]].icon}</h5>
+              <h5>{weatherIcons[condition][forecast[condition]].description}</h5>
             </div>
           )
         }
-        if (condition === "precipitationProbability") {
-          <div>
-            <h5>{forecast[condition]}</h5>
-          </div>
-        }
         return (
           <div key={index}>
-            {/* decide if temperature will be tomorrow.io icons or weatherIcons */}
-            {/* {(condition === "temperature" && isHourlyForecast === false) && <img src={`icons/large/png/${forecast.weatherCodeDay}.png`} alt="weather condition" />} */}
-            {
-              condition === "moonPhase" ? (
-                <div>
-                  <h5>{weatherIcons[condition][forecast[condition]].icon}</h5>
-                  <h5>{weatherIcons[condition][forecast[condition]].description}</h5>
-                </div>
-              ) : (
-                <div>
-                  {weatherIcons[condition]}
-                  {/* <h5>{condition}</h5> */}
-                  <h5>{forecast[condition]}</h5>
-                </div>
-              )
-            }
+            {condition === "temperature" ? <img src={`icons/large/png/${(parseInt(militaryTime) > 5 && parseInt(militaryTime) < 20) ? forecast.weatherCodeDay : forecast.weatherCodeNight}.png`} alt="weather condition" /> : weatherIcons[condition]}
+            <h5>{forecast[condition]}</h5>
           </div>
         );
       })}

@@ -37,10 +37,10 @@ function Conditions(props) {
       <div onClick={() => setConditions(["sunriseTime", "sunsetTime"])}>
         <h5>Sunrise:</h5>
         {weatherIcons.sunriseTime}
-        <h6>{weather.hourly[0].sunriseTime}</h6>
+        <h6>{weather.daily[0].sunriseTime}</h6>
         <h5>Sunset:</h5>
         {weatherIcons.sunsetTime}
-        <h6>{weather.hourly[0].sunsetTime}</h6>
+        <h6>{weather.daily[0].sunsetTime}</h6>
       </div>
       <div onClick={() => setConditions(["uvIndex", "uvHealthConcern"])}>
         <h4>UV Index:</h4>
