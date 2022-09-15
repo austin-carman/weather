@@ -192,82 +192,47 @@ export const weatherCodes = {
   80001: "Thunderstorm",
 };
 
-export const moonPhases = {
-  0: {
-    phase: "New",
-    icon: WiMoonAltNew,
-  },
-  1: {
-    phase: "Waxing Crescent",
-    icon: WiMoonAltWaxingCrescent4,
-  },
-  2: {
-    phase: "First Quarter",
-    icon: WiMoonAltFirstQuarter,
-  },
-  3: {
-    phase: "Waxing Gibbous",
-    icon: WiMoonAltWaxingGibbous4,
-  },
-  4: {
-    phase: "Full",
-    icon: WiMoonAltFull,
-  },
-  5: {
-    phase: "Waning Gibbous",
-    icon: WiMoonAltWaningGibbous4,
-  },
-  6: {
-    phase: "Third Quarter",
-    icon: WiMoonAltThirdQuarter,
-  },
-  7: {
-    phase: "Waning Crescent",
-    icon: WiMoonAltWaningCrescent4,
-  },
-};
-
 export const weatherIcons = {
   "temperature": <i className="bi bi-thermometer-half"></i>,
   "cloudCover": <i className="bi bi-clouds"></i>,
   "humidity": <i className="bi bi-moisture"></i>,
   "moonPhase": {
     0: {
-      phase: "New",
+      description: "New",
       icon: <WiMoonAltNew />,
     },
     1: {
-      phase: "Waxing Crescent",
+      description: "Waxing Crescent",
       icon: <WiMoonAltWaxingCrescent4 />,
     },
     2: {
-      phase: "First Quarter",
+      description: "First Quarter",
       icon: <WiMoonAltFirstQuarter />,
     },
     3: {
-      phase: "Waxing Gibbous",
+      description: "Waxing Gibbous",
       icon: <WiMoonAltWaxingGibbous4 />,
     },
     4: {
-      phase: "Full",
+      description: "Full",
       icon: <WiMoonAltFull />,
     },
     5: {
-      phase: "Waning Gibbous",
+      description: "Waning Gibbous",
       icon: <WiMoonAltWaningGibbous4 />,
     },
     6: {
-      phase: "Third Quarter",
+      description: "Third Quarter",
       icon: <WiMoonAltThirdQuarter />,
     },
     7: {
-      phase: "Waning Crescent",
+      description: "Waning Crescent",
       icon: <WiMoonAltWaningCrescent4 />,
     },
   },
   "precipitationType": {
     0: {
-      description: "Precipitation",
+      description: "Rain",
       icon: <i className="bi bi-cloud-rain"></i>,
     },
     1: {
@@ -294,6 +259,7 @@ export const weatherIcons = {
   "windSpeed": <i className="bi bi-wind"></i>,
 }
 
+// TODO: combine with weatherIcons???
 export const uvHealthRisk = {
   0: "Low",
   1: "Low",
@@ -327,12 +293,4 @@ export function getWindDirection(deg) {
   } else if (deg > 300 && deg < 330) {
     return "NW"
   }
-};
-
-export const precipitation = {
-  0: "Precipitation",
-  1: "Rain",
-  2: "Snow",
-  3: "Freezing Rain",
-  4: "Ice Pellets / Sleet",
 };

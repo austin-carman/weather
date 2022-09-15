@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Conditions from './Conditions';
 import ForecastList from './ForecastList';
 import CurrentWeather from './CurrentWeather';
-import { moonPhases, precipitation, uvHealthRisk, getWindDirection } from "../data/data";
+import { uvHealthRisk, getWindDirection } from "../data/data";
 import { getWeather } from "../api/apiCalls";
 
 // Get Weather
@@ -33,7 +33,7 @@ function Weather(props) {
               cloudCover: Math.round(hourlyConditions.cloudCover) + "%",
               humidity: Math.round(hourlyConditions.humidity) + "%",
               precipitationProbability: hourlyConditions.precipitationProbability + "%",
-              precipitationType: precipitation[hourlyConditions.precipitationType],
+              precipitationType: hourlyConditions.precipitationType,
               sunriseTime: new Date(hourlyConditions.sunriseTime).toLocaleTimeString([], { hour: "numeric", minute: "numeric" }),
               sunsetTime: new Date(hourlyConditions.sunsetTime).toLocaleTimeString([], { hour: "numeric", minute: "numeric" }),
               temperature: Math.floor(hourlyConditions.temperature) + "\xB0",
@@ -54,7 +54,6 @@ function Weather(props) {
               moonPhase: dailyConditions.moonPhase,
               precipitationProbability: dailyConditions.precipitationProbability + "%",
               precipitationType: dailyConditions.precipitationType,
-              // precipitationType: precipitation[dailyConditions.precipitationType],
               sunriseTime: new Date(dailyConditions.sunriseTime).toLocaleTimeString([], { hour: "numeric", minute: "numeric" }),
               sunsetTime: new Date(dailyConditions.sunsetTime).toLocaleTimeString([], { hour: "numeric", minute: "numeric" }),
               temperature: Math.floor(dailyConditions.temperature) + "\xB0",
