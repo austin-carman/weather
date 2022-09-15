@@ -77,3 +77,12 @@ h5 {
 h6 {
   font-size: 1.5rem;
 }
+
+.top-container {
+  display: flex;
+  justify-content: space-between;
+}
+.powered-by {
+  width: 125px;
+}
+

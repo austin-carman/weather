@@ -16,13 +16,15 @@ function App() {
 
   return (
     <div className="App">
-      <div>
-        <h2>Weather</h2>
-        <img src="Powered_by_Tomorrow-Black.png" alt="Powered by Tomorrow.io" />
-      </div>
-      <div>
-        <Search setCity={setCity} />
-        <CurrentLocation city={city} setCity={setCity} />
+      <div className="top-container">
+        <div>
+          <h4>Weather</h4>
+          <img className="powered-by" src="Powered_by_Tomorrow-Black.png" alt="Powered by Tomorrow.io" />
+        </div>
+        <div>
+          <Search setCity={setCity} />
+          <CurrentLocation city={city} setCity={setCity} />
+        </div>
       </div>
       {
         city.timezone ? (
