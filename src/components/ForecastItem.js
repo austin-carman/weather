@@ -43,8 +43,21 @@ function ForecastItem(props) {
         }
         return (
           <div key={index}>
-            {/* if condition is temperature use the image corresponding to the weather code appropriate for that time of day: Day = 6:00am through 7:00pm, Night = 8pm - 5am. Otherwise use condition's regular icon */}
-            {condition === "temperature" ? <img src={`icons/large/png/${(parseInt(militaryTime) > 5 && parseInt(militaryTime) < 20) ? forecast.weatherCodeDay : forecast.weatherCodeNight}.png`} alt="weather condition" /> : weatherIcons[condition]}
+            {/* 
+              if condition is temperature use the image corresponding to the weather code appropriate for that time of day: 
+              Day = 6:00am through 7:00pm, Night = 8pm - 5am. 
+              Otherwise use condition's regular(black and white) icon
+            */}
+            {
+              condition === "temperature" ? (
+                <img
+                  src={`icons/large/png/${(parseInt(militaryTime) > 5 && parseInt(militaryTime) < 20) ? forecast.weatherCodeDay : forecast.weatherCodeNight}.png`}
+                  alt="weather condition"
+                />
+              ) : (
+                weatherIcons[condition]
+              )
+            }
             <h5>{forecast[condition]}</h5>
           </div>
         );

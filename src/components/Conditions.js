@@ -8,24 +8,24 @@ function Conditions(props) {
   return (
     <div>
       <div onClick={() => setConditions(["temperature", "temperatureMin", "temperatureMax"])}>
-        <h4>Temperature:</h4>
+        <h4>Temperature</h4>
         {weatherIcons.temperature}
-        <h4>{weather.hourly[0].temperature}</h4>
-        <h4>{weather.daily[0].temperatureMin}</h4>
-        <h4>{weather.daily[0].temperatureMax}</h4>
+        <h5>{weather.hourly[0].temperature}</h5>
+        <h5>{weather.daily[0].temperatureMin}</h5>
+        <h5>{weather.daily[0].temperatureMax}</h5>
       </div>
       <div onClick={() => setConditions(["cloudCover"])}>
-        <h4>Cloud Cover:</h4>
+        <h4>Cloud Cover</h4>
         {weatherIcons.cloudCover}
         <h5>{weather.hourly[0].cloudCover}</h5>
       </div>
       <div onClick={() => setConditions(["humidity"])}>
-        <h4>Humidity:</h4>
+        <h4>Humidity</h4>
         {weatherIcons.humidity}
         <h5>{weather.hourly[0].humidity}</h5>
       </div>
       <div onClick={() => setConditions(["moonPhase"])}>
-        <h4>Moon Phase:</h4>
+        <h4>Moon Phase</h4>
         {weatherIcons["moonPhase"][weather.daily[0].moonPhase].icon}
         <h5>{weatherIcons["moonPhase"][weather.daily[0].moonPhase].description}</h5>
       </div>
@@ -35,26 +35,27 @@ function Conditions(props) {
         <h5>{weather.hourly[0].precipitationProbability}</h5>
       </div>
       <div onClick={() => setConditions(["sunriseTime", "sunsetTime"])}>
-        <h5>Sunrise:</h5>
+        <h4>
+          Sunrise | Sunset
+        </h4>
         {weatherIcons.sunriseTime}
-        <h6>{weather.daily[0].sunriseTime}</h6>
-        <h5>Sunset:</h5>
+        <h5>{weather.daily[0].sunriseTime}</h5>
         {weatherIcons.sunsetTime}
-        <h6>{weather.daily[0].sunsetTime}</h6>
+        <h5>{weather.daily[0].sunsetTime}</h5>
       </div>
       <div onClick={() => setConditions(["uvIndex", "uvHealthConcern"])}>
-        <h4>UV Index:</h4>
+        <h4>UV Index</h4>
         {weatherIcons.uvIndex}
         <h5>{weather.hourly[0].uvIndex}</h5>
         <h5>{weather.hourly[0].uvHealthConcern}</h5>
       </div>
       <div onClick={() => setConditions(["visibility"])}>
-        <h4>Visibility:</h4>
+        <h4>Visibility</h4>
         {weatherIcons.visibility}
         <h5>{weather.hourly[0].visibility}</h5>
       </div>
       <div onClick={() => setConditions(["windSpeed", "windDirection"])}>
-        <h4>Wind:</h4>
+        <h4>Wind</h4>
         {weatherIcons.windspeed}
         <h5>{weather.hourly[0].windSpeed}</h5>
         <h5>{weather.hourly[0].windDirection}</h5>
