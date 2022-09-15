@@ -14,7 +14,7 @@ function CurrentWeather(props) {
       <h2>{city}</h2>
       <div>
         <img src={`icons/large/png/${code}.png`} alt="weather condition" />
-        <h4>{weatherCodes[code]}</h4>
+        <h3>{weatherCodes[code]}</h3>
       </div>
       <div>
         <h3>{currentHourWeather.temperature}</h3>
