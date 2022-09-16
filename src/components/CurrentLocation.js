@@ -1,5 +1,6 @@
 import { getTimezone, getLocationName } from "../api/apiCalls";
 import { useState } from "react";
+import { Button } from "react-bootstrap";
 
 function CurrentLocation(props) {
   const { city, setCity } = props;
@@ -44,15 +45,14 @@ function CurrentLocation(props) {
   }
 
   return (
-    <>
-      {
-        loading ? (
-          <div>Loading...</div> // TODO: loading animation?
-        ) : (
-          <button onClick={handleClick}>Use Current Location</button>
-        )
-      }
-    </>
+    <div>
+      <Button onClick={handleClick}
+        variant="primary"
+        size="lg"
+      >
+        <i class="bi bi-geo-alt"></i>
+      </Button>
+    </div>
   )
 }
 

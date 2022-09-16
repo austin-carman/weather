@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getTimezone, getSearchSuggestions } from "../api/apiCalls";
+import { Form, Col, Row } from "react-bootstrap";
 
 // Search for location and get search suggestions
 function Search(props) {
@@ -54,19 +55,22 @@ function Search(props) {
   }
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Search City or Zip"
-          onChange={handleChange}
-          value={searchText}
-        />
-        {(searchText.length >= minQueryLength) && searchSuggestions.map((city, index) => {
-          return <div key={index} onClick={() => handleLocation(index)}>{city.place_name}</div>
-        })}
-      </form>
-    </>
+    <Form onSubmit={handleSubmit}>
+      <Form.Control
+        type="text"
+        placeholder="Address, City, or Zip"
+        size="lg"
+        onChange={handleChange}
+        value={searchText}
+      />
+      {(searchText.length >= minQueryLength) && searchSuggestions.map((city, index) => {
+        return (
+          <div className="suggested-location" key={index} onClick={() => handleLocation(index)}>
+            {city.place_name}
+          </div>
+        )
+      })}
+    </Form>
   )
 }
 

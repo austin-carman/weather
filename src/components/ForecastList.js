@@ -1,24 +1,30 @@
 import ForecastItem from "./ForecastItem";
 import { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
 
 // Determines if hourly or daily conditions will be displayed
 function ForecastList(props) {
   const { weather, conditions, timezone } = props;
   // if isHourlyForecast is true, forecast is hourly. If false, forecast is daily
   const [isHourlyForecast, setIsHourlyForecast] = useState(false);
+  const [disabled, setDisabled] = useState(false);
   let forecastWeather = isHourlyForecast ? weather.hourly : weather.daily;
 
   useEffect(() => {
     // moon phase and sunrise/sunset conditions are not available in hourly forecast, only daily
-    (conditions[0] === "moonPhase" || conditions[0] === "sunriseTime") && setIsHourlyForecast(false);
+    if (conditions[0] === "moonPhase" || conditions[0] === "sunriseTime") {
+      setIsHourlyForecast(false)
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+    }
   }, [conditions]);
 
   return (
     <div>
       <div>
-        {/* TODO: grey out the hourly button and make inactive for conditions that don't apply to hourly view, instead of removing hourly button completely */}
-        <button onClick={(conditions[0] === "moonPhase" || conditions[0] === "sunriseTime") ? null : () => setIsHourlyForecast(true)}>Hourly</button>
-        <button onClick={() => setIsHourlyForecast(false)}>Daily</button>
+        <Button variant="primary" size="sm" disabled={disabled} onClick={() => setIsHourlyForecast(true)}>Hourly</Button>
+        <Button variant="primary" size="sm" onClick={() => setIsHourlyForecast(false)}>Daily</Button>
       </div>
       <div>
         {forecastWeather.map((forecast, index) => {

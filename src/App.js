@@ -16,12 +16,12 @@ function App() {
 
   return (
     <div className="App">
-      <div className="top-container">
-        <div>
+      <div className="header">
+        <div className="name-container">
           <h4>Weather</h4>
           <img className="powered-by" src="Powered_by_Tomorrow-Black.png" alt="Powered by Tomorrow.io" />
         </div>
-        <div>
+        <div className="search-container">
           <Search setCity={setCity} />
           <CurrentLocation city={city} setCity={setCity} />
         </div>

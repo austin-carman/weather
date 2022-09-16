@@ -79,12 +79,21 @@ h6 {
 }
 
 /* APP*/
-.top-container {
+.header {
   display: flex;
   justify-content: space-between;
 }
+.name-container {
+  width: 25%;
+}
 .powered-by {
   width: 125px;
+}
+.search-container {
+  width: 50%;
+  display: flex;
+  border: 1px solid red;
+  justify-content: flex-end;
 }
 
 /* HOME */
@@ -96,7 +105,6 @@ h6 {
   grid-template-rows: auto auto auto;
   column-gap: 50px;
   row-gap: 50px;
-
 }
 .item1 {
   grid-column-start: 2;
@@ -110,4 +118,8 @@ h6 {
 }
 .item4 {
   grid-column-start: 3;
+}
+
+.suggested-location {
+  border: 1px solid grey;
 }
