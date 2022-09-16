@@ -123,3 +123,14 @@ h6 {
 .suggested-location {
   border: 1px solid grey;
 }
+
+/* CONDITIONS */
+.conditions-list-container {
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+.condition-card {
+  display: inline-block;
+  width: 125px;
+  margin: 2%;
+}
