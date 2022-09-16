@@ -23,8 +23,8 @@ function ForecastList(props) {
   return (
     <div>
       <div>
-        <Button variant="primary" size="sm" disabled={disabled} onClick={() => setIsHourlyForecast(true)}>Hourly</Button>
-        <Button variant="primary" size="sm" onClick={() => setIsHourlyForecast(false)}>Daily</Button>
+        <Button variant="primary" size="lg" disabled={disabled} onClick={() => setIsHourlyForecast(true)}>Hourly</Button>
+        <Button variant="primary" size="lg" onClick={() => setIsHourlyForecast(false)}>Daily</Button>
       </div>
       <div>
         {forecastWeather.map((forecast, index) => {

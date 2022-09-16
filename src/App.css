@@ -92,7 +92,6 @@ h6 {
 .search-container {
   width: 50%;
   display: flex;
-  border: 1px solid red;
   justify-content: flex-end;
 }
 
@@ -120,8 +119,21 @@ h6 {
   grid-column-start: 3;
 }
 
+/* Search */
+.form {
+  width: 200px;
+  position: absolute;
+  z-index: 1;
+  right: 35px;
+  background-color: white;
+}
 .suggested-location {
   border: 1px solid grey;
+}
+
+/* CurrentLocation */
+.btn-current-location {
+  width: 35px;
 }
 
 /* CONDITIONS */
@@ -130,7 +142,7 @@ h6 {
   white-space: nowrap;
 }
 .condition-card {
-  display: inline-block;
-  width: 125px;
-  margin: 2%;
+  /* display: inline-block; */
+  width: 15rem;
+  /* margin: 2%; */
 }

@@ -55,7 +55,7 @@ function Search(props) {
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form className="form" onSubmit={handleSubmit}>
       <Form.Control
         type="text"
         placeholder="Address, City, or Zip"

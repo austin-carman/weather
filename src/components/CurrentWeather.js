@@ -11,33 +11,22 @@ function CurrentWeather(props) {
   const code = (parseInt(time) > 5 && parseInt(time) < 20) ? currentDayWeather.weatherCodeDay : currentDayWeather.weatherCodeNight;
 
   return (
-    <div>
-      <Card style={{ width: "150px", margin: "auto" }}>
-        <Card.Img variant="top" src={`icons/large/png/${code}.png`} alt="weather condition" />
-        <Card.Body>
-          <Card.Title>{weatherCodes[code]}</Card.Title>
-          <Card.Text>
-            {currentHourWeather.temperature}
-          </Card.Text>
-          Low: {currentDayWeather.temperatureMin}
-          <Card.Text>
-          </Card.Text>
-          <Card.Text>
-            High: {currentDayWeather.temperatureMax}
-          </Card.Text>
-        </Card.Body>
-      </Card>
-      {/* <h2>{city}</h2>
-      <div>
-        <img src={`icons/large/png/${code}.png`} alt="weather condition" />
-        <h3>{weatherCodes[code]}</h3>
-      </div>
-      <div>
-        <h3>{currentHourWeather.temperature}</h3>
-        <h5>Low: {currentDayWeather.temperatureMin}</h5>
-        <h5>High: {currentDayWeather.temperatureMax}</h5>
-      </div> */}
-    </div>
+    <Card style={{ width: "150px", margin: "auto" }}>
+      <Card.Header>{city}</Card.Header>
+      <Card.Img variant="top" src={`icons/large/png/${code}.png`} alt="weather condition" />
+      <Card.Body>
+        <Card.Title>{weatherCodes[code]}</Card.Title>
+        <Card.Text>
+          {currentHourWeather.temperature}
+        </Card.Text>
+        Low: {currentDayWeather.temperatureMin}
+        <Card.Text>
+        </Card.Text>
+        <Card.Text>
+          High: {currentDayWeather.temperatureMax}
+        </Card.Text>
+      </Card.Body>
+    </Card>
   )
 }
 

@@ -46,7 +46,7 @@ function CurrentLocation(props) {
 
   return (
     <div>
-      <Button onClick={handleClick}
+      <Button className="btn-current-location" onClick={handleClick}
         variant="primary"
         size="lg"
       >
