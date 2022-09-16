@@ -12,7 +12,7 @@ function CurrentWeather(props) {
 
   return (
     <div>
-      <Card style={{ width: "50%", margin: "auto" }}>
+      <Card style={{ width: "150px", margin: "auto" }}>
         <Card.Img variant="top" src={`icons/large/png/${code}.png`} alt="weather condition" />
         <Card.Body>
           <Card.Title>{weatherCodes[code]}</Card.Title>
