@@ -58,6 +58,7 @@ html {
 body {
 	font-size: 1.6rem;
 	line-height: 1.5;
+  text-align: center;
 }
 h1 {
 	font-size: 6rem;
@@ -119,21 +120,36 @@ h6 {
   grid-column-start: 3;
 }
 
-/* Search */
+/* SEARCH */
 .form {
   width: 200px;
   position: absolute;
   z-index: 1;
   right: 35px;
   background-color: white;
+  text-align: left;
 }
 .suggested-location {
   border: 1px solid grey;
 }
 
-/* CurrentLocation */
+/* CURRENT LOCATION */
 .btn-current-location {
   width: 35px;
+}
+
+/* CURRENT WEATHER */
+.city {
+  margin: auto;
+  background-color: white;
+  border: none;
+}
+.current-weather-body {
+  margin: auto;
+}
+.current-weather-img {
+  width: 200px;
+  margin: auto;
 }
 
 /* CONDITIONS */

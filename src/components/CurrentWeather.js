@@ -11,19 +11,16 @@ function CurrentWeather(props) {
   const code = (parseInt(time) > 5 && parseInt(time) < 20) ? currentDayWeather.weatherCodeDay : currentDayWeather.weatherCodeNight;
 
   return (
-    <Card style={{ width: "150px", margin: "auto" }}>
-      <Card.Header>{city}</Card.Header>
-      <Card.Img variant="top" src={`icons/large/png/${code}.png`} alt="weather condition" />
-      <Card.Body>
-        <Card.Title>{weatherCodes[code]}</Card.Title>
-        <Card.Text>
+    <Card border="light">
+      <Card.Header as="h3" className="city">{city}</Card.Header>
+      <Card.Img className="current-weather-img" variant="top" src={`icons/large/png/${code}.png`} alt="weather condition" />
+      <Card.Body className="current-weather-body">
+        <Card.Title as="h4">{weatherCodes[code]}</Card.Title>
+        <Card.Text as="h5">
           {currentHourWeather.temperature}
         </Card.Text>
-        Low: {currentDayWeather.temperatureMin}
-        <Card.Text>
-        </Card.Text>
-        <Card.Text>
-          High: {currentDayWeather.temperatureMax}
+        <Card.Text as="h6">
+          {currentDayWeather.temperatureMin} | {currentDayWeather.temperatureMax}
         </Card.Text>
       </Card.Body>
     </Card>
