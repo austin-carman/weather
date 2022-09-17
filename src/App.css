@@ -154,11 +154,18 @@ h6 {
 
 /* CONDITIONS */
 .conditions-list-container {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-wrap: nowrap;
   overflow-x: scroll;
-  white-space: nowrap;
 }
 .condition-card {
-  /* display: inline-block; */
-  width: 15rem;
-  /* margin: 2%; */
+  flex: 0 0 auto;
+  margin: 2%;
+  padding: 1%;
+  width: 150px;
+}
+.condition-card :hover {
+  cursor: pointer;
 }
