@@ -19,7 +19,7 @@ function ForecastItem(props) {
   // used to differentiate use of weather code day and weather code night 
   const militaryTime = date.toLocaleTimeString([], { hour: 'numeric', hour12: false });
   return (
-    <Card>
+    <Card className="forecast-cards">
       <Card.Header as="h5">{isHourlyForecast ? time : weekdays[date.getUTCDay()]}</Card.Header>
       <Card.Body>
         {conditions.map((condition, index) => {
@@ -28,15 +28,15 @@ function ForecastItem(props) {
             return null;
           }
           if (condition === "precipitationType") {
-            return <Card.Text key={index}>{weatherIcons[condition][forecast[condition]].icon}</Card.Text>
+            return <Card.Text as="h3" key={index}>{weatherIcons[condition][forecast[condition]].icon}</Card.Text>
           }
           if (condition === "moonPhase") {
             return (
               <div key={index} >
-                <Card.Text>
+                <Card.Text as="h3">
                   {weatherIcons[condition][forecast[condition]].icon}
                 </Card.Text>
-                <Card.Text>
+                <Card.Text as="h5">
                   {weatherIcons[condition][forecast[condition]].description}
                 </Card.Text>
               </div>
@@ -47,22 +47,29 @@ function ForecastItem(props) {
           }
           return (
             <div key={index}>
-              {/* 
-                if condition is temperature use the image corresponding to the weather code appropriate for that time of day: 
-                Day = 6:00am through 7:00pm, Night = 8pm - 5am. 
-                Otherwise use condition's regular(black and white) icon
-              */}
               {
+                // temperature's image will depend on time of day
+                // Day = 6:00am through 7:00pm, Night = 8pm - 5am. Other 
+                // conditions will use black and white icon
                 condition === "temperature" ? (
-                  <img
-                    src={`icons/large/png/${(parseInt(militaryTime) > 5 && parseInt(militaryTime) < 20) ? forecast.weatherCodeDay : forecast.weatherCodeNight}.png`}
+                  <Card.Img
+                    className="forecast-img"
+                    variant="top"
+                    src={
+                      `icons/large/png/${(parseInt(militaryTime) > 5 && parseInt(militaryTime) < 20) ? (
+                        forecast.weatherCodeDay
+                      ) : (
+                        forecast.weatherCodeNight
+                      )
+                      }.png`
+                    }
                     alt="weather condition"
                   />
                 ) : (
-                  weatherIcons[condition]
+                  <Card.Text as="h3">{weatherIcons[condition]}</Card.Text>
                 )
               }
-              <Card.Text>{forecast[condition]}</Card.Text>
+              <Card.Text as="h5">{forecast[condition]}</Card.Text>
             </div>
           );
         })}

@@ -51,6 +51,7 @@ table {
 * {
   box-sizing: border-box; 
 	max-width: 100%;
+  /* border: 1px solid red; */
 }
 html {
 	font-size: 62.5%;
@@ -98,13 +99,13 @@ h6 {
 
 /* HOME */
 .home-icons-container {
-  width: 75%;
-  margin: 50% auto;
   display: grid;
   grid-template-columns: auto auto auto;
   grid-template-rows: auto auto auto;
   column-gap: 50px;
   row-gap: 50px;
+  width: 75%;
+  margin: 50% auto;
 }
 .item1 {
   grid-column-start: 2;
@@ -148,7 +149,7 @@ h6 {
   margin: auto;
 }
 .current-weather-img {
-  width: 200px;
+  width: 150px;
   margin: auto;
 }
 
@@ -162,10 +163,23 @@ h6 {
 }
 .condition-card {
   flex: 0 0 auto;
-  margin: 2%;
-  padding: 1%;
+  margin-right: 4%;
   width: 150px;
 }
 .condition-card :hover {
   cursor: pointer;
+}
+
+/* FORECAST */
+.forecast-list {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+.forecast-img {
+  width: 75px;
+}
+.forecast-icon {
+  width: 200px;
 }

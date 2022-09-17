@@ -1,6 +1,6 @@
 import ForecastItem from "./ForecastItem";
 import { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import { ButtonGroup, Button, CardGroup } from "react-bootstrap";
 
 // Determines if hourly or daily conditions will be displayed
 function ForecastList(props) {
@@ -21,17 +21,15 @@ function ForecastList(props) {
   }, [conditions]);
 
   return (
-    <div>
-      <div>
+    <CardGroup className="forecast-list">
+      <ButtonGroup>
         <Button variant="primary" size="lg" disabled={disabled} onClick={() => setIsHourlyForecast(true)}>Hourly</Button>
         <Button variant="primary" size="lg" onClick={() => setIsHourlyForecast(false)}>Daily</Button>
-      </div>
-      <div>
-        {forecastWeather.map((forecast, index) => {
-          return <ForecastItem key={index} forecast={forecast} isHourlyForecast={isHourlyForecast} conditions={conditions} timezone={timezone} />
-        })}
-      </div>
-    </div>
+      </ButtonGroup>
+      {forecastWeather.map((forecast, index) => {
+        return <ForecastItem key={index} forecast={forecast} isHourlyForecast={isHourlyForecast} conditions={conditions} timezone={timezone} />
+      })}
+    </CardGroup>
   )
 }
 
