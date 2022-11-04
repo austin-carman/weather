@@ -57,7 +57,6 @@ export const getWeather = async (location, timezone) => {
     "precipitationType",
     "sunriseTime",
     "sunsetTime",
-    "moonPhase",
     "cloudCover",
     "humidity",
     "visibility",

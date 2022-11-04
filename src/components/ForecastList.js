@@ -11,8 +11,8 @@ function ForecastList(props) {
   let forecastWeather = isHourlyForecast ? weather.hourly : weather.daily;
 
   useEffect(() => {
-    // moon phase and sunrise/sunset conditions are not available in hourly forecast, only daily
-    if (conditions[0] === "moonPhase" || conditions[0] === "sunriseTime") {
+    // sunrise/sunset conditions are not available in hourly forecast, only daily
+    if (conditions[0] === "sunriseTime") {
       setIsHourlyForecast(false)
       setDisabled(true);
     } else {

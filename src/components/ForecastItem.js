@@ -30,18 +30,6 @@ function ForecastItem(props) {
           if (condition === "precipitationType") {
             return <Card.Text as="h3" key={index}>{weatherIcons[condition][forecast[condition]].icon}</Card.Text>
           }
-          if (condition === "moonPhase") {
-            return (
-              <div key={index} >
-                <Card.Text as="h3">
-                  {weatherIcons[condition][forecast[condition]].icon}
-                </Card.Text>
-                <Card.Text as="h5">
-                  {weatherIcons[condition][forecast[condition]].description}
-                </Card.Text>
-              </div>
-            )
-          }
           if ((forecast[condition] === undefined || NaN)) {
             return <Card.Text key={index}>Data Unavailable</Card.Text>
           }

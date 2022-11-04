@@ -50,7 +50,7 @@ function CurrentLocation(props) {
         variant="primary"
         size="lg"
       >
-        <i class="bi bi-geo-alt"></i>
+        <i className="bi bi-geo-alt"></i>
       </Button>
     </div>
   )

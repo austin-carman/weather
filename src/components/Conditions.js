@@ -38,15 +38,6 @@ function Conditions(props) {
           </Card.Text>
         </Card.Body>
       </Card>
-      <Card className="condition-card" onClick={() => setConditions(["moonPhase"])}>
-        <Card.Header as="h5">Moon Phase</Card.Header>
-        {weatherIcons["moonPhase"][weather.daily[0].moonPhase].icon}
-        <Card.Body>
-          <Card.Text>
-            {weatherIcons["moonPhase"][weather.daily[0].moonPhase].description}
-          </Card.Text>
-        </Card.Body>
-      </Card>
       <Card className="condition-card" onClick={() => setConditions(["precipitationType", "precipitationProbability"])}>
         <Card.Header as="h5">{weatherIcons["precipitationType"][weather.daily[0].precipitationType].description}</Card.Header>
         {weatherIcons["precipitationType"][weather.daily[0].precipitationType].icon}

@@ -1,5 +1,3 @@
-import { WiMoonAltNew, WiMoonAltFull, WiMoonAltThirdQuarter, WiMoonAltFirstQuarter, WiMoonAltWaningCrescent4, WiMoonAltWaxingCrescent4, WiMoonAltWaxingGibbous4, WiMoonAltWaningGibbous4 } from "weather-icons-react";
-
 export const weatherCodes = {
   0: "Unknown",
   // start of weatherCodesDay
@@ -196,40 +194,6 @@ export const weatherIcons = {
   "temperature": <i className="bi bi-thermometer-half"></i>,
   "cloudCover": <i className="bi bi-clouds"></i>,
   "humidity": <i className="bi bi-moisture"></i>,
-  "moonPhase": {
-    0: {
-      description: "New",
-      icon: <WiMoonAltNew />,
-    },
-    1: {
-      description: "Waxing Crescent",
-      icon: <WiMoonAltWaxingCrescent4 />,
-    },
-    2: {
-      description: "First Quarter",
-      icon: <WiMoonAltFirstQuarter />,
-    },
-    3: {
-      description: "Waxing Gibbous",
-      icon: <WiMoonAltWaxingGibbous4 />,
-    },
-    4: {
-      description: "Full",
-      icon: <WiMoonAltFull />,
-    },
-    5: {
-      description: "Waning Gibbous",
-      icon: <WiMoonAltWaningGibbous4 />,
-    },
-    6: {
-      description: "Third Quarter",
-      icon: <WiMoonAltThirdQuarter />,
-    },
-    7: {
-      description: "Waning Crescent",
-      icon: <WiMoonAltWaningCrescent4 />,
-    },
-  },
   "precipitationType": {
     0: {
       description: "Rain",

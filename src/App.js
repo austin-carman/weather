@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className="header">
+      <header className="header">
         <div className="name-container">
           <h4>Weather</h4>
           <img className="powered-by" src="Powered_by_Tomorrow-Black.png" alt="Powered by Tomorrow.io" />
@@ -25,7 +25,7 @@ function App() {
           <Search setCity={setCity} />
           <CurrentLocation city={city} setCity={setCity} />
         </div>
-      </div>
+      </header>
       {
         city.timezone ? (
           <Weather city={city} />
